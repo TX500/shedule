@@ -37,6 +37,7 @@
             this.lecturerMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.subjectMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.classroomsMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
+            this.sheduleMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMainForm.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +69,7 @@
             // справочникиToolStripMenuItem
             // 
             this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sheduleMenuMainForm,
             this.facultyMenuMainForm,
             this.groupsMenuMainForm,
             this.lecturerMenuMainForm,
@@ -108,6 +110,12 @@
             this.classroomsMenuMainForm.Size = new System.Drawing.Size(196, 22);
             this.classroomsMenuMainForm.Text = "Аудитории";
             // 
+            // sheduleMenuMainForm
+            // 
+            this.sheduleMenuMainForm.Name = "sheduleMenuMainForm";
+            this.sheduleMenuMainForm.Size = new System.Drawing.Size(196, 22);
+            this.sheduleMenuMainForm.Text = "Расписания";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,6 +147,7 @@
         private System.Windows.Forms.ToolStripMenuItem lecturerMenuMainForm;
         private System.Windows.Forms.ToolStripMenuItem subjectMenuMainForm;
         private System.Windows.Forms.ToolStripMenuItem classroomsMenuMainForm;
+        private System.Windows.Forms.ToolStripMenuItem sheduleMenuMainForm;
     }
 }
 
