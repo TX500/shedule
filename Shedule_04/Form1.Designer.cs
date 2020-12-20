@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuMainForm = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,10 +37,7 @@
             this.lecturerMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.subjectMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.classroomsMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolMainForm = new System.Windows.Forms.ToolStrip();
-            this.addButtonToolMainForm = new System.Windows.Forms.ToolStripButton();
             this.menuMainForm.SuspendLayout();
-            this.toolMainForm.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuMainForm
@@ -112,32 +108,13 @@
             this.classroomsMenuMainForm.Size = new System.Drawing.Size(196, 22);
             this.classroomsMenuMainForm.Text = "Аудитории";
             // 
-            // toolMainForm
-            // 
-            this.toolMainForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addButtonToolMainForm});
-            this.toolMainForm.Location = new System.Drawing.Point(0, 24);
-            this.toolMainForm.Name = "toolMainForm";
-            this.toolMainForm.Size = new System.Drawing.Size(784, 25);
-            this.toolMainForm.TabIndex = 1;
-            this.toolMainForm.Text = "toolStrip1";
-            // 
-            // addButtonToolMainForm
-            // 
-            this.addButtonToolMainForm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.addButtonToolMainForm.Image = ((System.Drawing.Image)(resources.GetObject("addButtonToolMainForm.Image")));
-            this.addButtonToolMainForm.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.addButtonToolMainForm.Name = "addButtonToolMainForm";
-            this.addButtonToolMainForm.Size = new System.Drawing.Size(63, 22);
-            this.addButtonToolMainForm.Text = "Добавить";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.toolMainForm);
             this.Controls.Add(this.menuMainForm);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuMainForm;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainForm";
@@ -146,8 +123,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuMainForm.ResumeLayout(false);
             this.menuMainForm.PerformLayout();
-            this.toolMainForm.ResumeLayout(false);
-            this.toolMainForm.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,8 +139,6 @@
         private System.Windows.Forms.ToolStripMenuItem lecturerMenuMainForm;
         private System.Windows.Forms.ToolStripMenuItem subjectMenuMainForm;
         private System.Windows.Forms.ToolStripMenuItem classroomsMenuMainForm;
-        private System.Windows.Forms.ToolStrip toolMainForm;
-        private System.Windows.Forms.ToolStripButton addButtonToolMainForm;
     }
 }
 
