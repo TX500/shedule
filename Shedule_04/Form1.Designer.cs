@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuMainForm = new System.Windows.Forms.MenuStrip();
-            this.toolMainForm = new System.Windows.Forms.ToolStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +38,7 @@
             this.lecturerMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.subjectMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.classroomsMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolMainForm = new System.Windows.Forms.ToolStrip();
             this.addButtonToolMainForm = new System.Windows.Forms.ToolStripButton();
             this.menuMainForm.SuspendLayout();
             this.toolMainForm.SuspendLayout();
@@ -54,16 +54,6 @@
             this.menuMainForm.Size = new System.Drawing.Size(784, 24);
             this.menuMainForm.TabIndex = 0;
             this.menuMainForm.Text = "menuStrip1";
-            // 
-            // toolMainForm
-            // 
-            this.toolMainForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addButtonToolMainForm});
-            this.toolMainForm.Location = new System.Drawing.Point(0, 24);
-            this.toolMainForm.Name = "toolMainForm";
-            this.toolMainForm.Size = new System.Drawing.Size(784, 25);
-            this.toolMainForm.TabIndex = 1;
-            this.toolMainForm.Text = "toolStrip1";
             // 
             // файлToolStripMenuItem
             // 
@@ -96,6 +86,7 @@
             this.facultyMenuMainForm.Name = "facultyMenuMainForm";
             this.facultyMenuMainForm.Size = new System.Drawing.Size(196, 22);
             this.facultyMenuMainForm.Text = "Факультеты";
+            this.facultyMenuMainForm.Click += new System.EventHandler(this.facultyMenuMainForm_Click);
             // 
             // groupsMenuMainForm
             // 
@@ -120,6 +111,16 @@
             this.classroomsMenuMainForm.Name = "classroomsMenuMainForm";
             this.classroomsMenuMainForm.Size = new System.Drawing.Size(196, 22);
             this.classroomsMenuMainForm.Text = "Аудитории";
+            // 
+            // toolMainForm
+            // 
+            this.toolMainForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addButtonToolMainForm});
+            this.toolMainForm.Location = new System.Drawing.Point(0, 24);
+            this.toolMainForm.Name = "toolMainForm";
+            this.toolMainForm.Size = new System.Drawing.Size(784, 25);
+            this.toolMainForm.TabIndex = 1;
+            this.toolMainForm.Text = "toolStrip1";
             // 
             // addButtonToolMainForm
             // 

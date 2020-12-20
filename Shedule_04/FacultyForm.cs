@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace Shedule_04
 {
-    public partial class MainForm : Form
+    public partial class FacultyForm : Form
     {
-        public MainForm()
+        public FacultyForm()
         {
             InitializeComponent();
-        }
-
-        private void facultyMenuMainForm_Click(object sender, EventArgs e)
-        {
-            Form facultiForm = new FacultyForm();
-            facultiForm.ShowDialog();
         }
     }
 }
