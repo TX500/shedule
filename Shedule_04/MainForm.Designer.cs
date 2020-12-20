@@ -91,30 +91,35 @@
             this.groupsMenuMainForm.Name = "groupsMenuMainForm";
             this.groupsMenuMainForm.Size = new System.Drawing.Size(196, 22);
             this.groupsMenuMainForm.Text = "Групппы";
+            this.groupsMenuMainForm.Click += new System.EventHandler(this.groupsMenuMainForm_Click);
             // 
             // lecturerMenuMainForm
             // 
             this.lecturerMenuMainForm.Name = "lecturerMenuMainForm";
             this.lecturerMenuMainForm.Size = new System.Drawing.Size(196, 22);
             this.lecturerMenuMainForm.Text = "Преподаватели";
+            this.lecturerMenuMainForm.Click += new System.EventHandler(this.lecturerMenuMainForm_Click);
             // 
             // subjectMenuMainForm
             // 
             this.subjectMenuMainForm.Name = "subjectMenuMainForm";
             this.subjectMenuMainForm.Size = new System.Drawing.Size(196, 22);
             this.subjectMenuMainForm.Text = "Учебные дисциплины";
+            this.subjectMenuMainForm.Click += new System.EventHandler(this.subjectMenuMainForm_Click);
             // 
             // classroomsMenuMainForm
             // 
             this.classroomsMenuMainForm.Name = "classroomsMenuMainForm";
             this.classroomsMenuMainForm.Size = new System.Drawing.Size(196, 22);
             this.classroomsMenuMainForm.Text = "Аудитории";
+            this.classroomsMenuMainForm.Click += new System.EventHandler(this.classroomsMenuMainForm_Click);
             // 
             // sheduleMenuMainForm
             // 
             this.sheduleMenuMainForm.Name = "sheduleMenuMainForm";
             this.sheduleMenuMainForm.Size = new System.Drawing.Size(196, 22);
             this.sheduleMenuMainForm.Text = "Расписания";
+            this.sheduleMenuMainForm.Click += new System.EventHandler(this.sheduleMenuMainForm_Click);
             // 
             // MainForm
             // 
