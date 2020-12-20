@@ -75,7 +75,7 @@ namespace Shedule_04
         {
             if (lecturerForm == null)
             {
-                lecturerForm = new GroupForm();
+                lecturerForm = new LecturerForm();
                 lecturerForm.MdiParent = this;
                 lecturerForm.FormClosed += LecturerForm_FormClosed;
                 lecturerForm.Dock = DockStyle.Fill;
@@ -91,7 +91,7 @@ namespace Shedule_04
         {
             if (subjectForm == null)
             {
-                subjectForm = new GroupForm();
+                subjectForm = new SubjectForm();
                 subjectForm.MdiParent = this;
                 subjectForm.FormClosed += SubjectForm_FormClosed;
                 subjectForm.Dock = DockStyle.Fill;
@@ -107,7 +107,7 @@ namespace Shedule_04
         {
             if (classroomForm == null)
             {
-                classroomForm = new GroupForm();
+                classroomForm = new ClassroomForm();
                 classroomForm.MdiParent = this;
                 classroomForm.FormClosed += ClassroomForm_FormClosed;
                 classroomForm.Dock = DockStyle.Fill;
