@@ -75,5 +75,7 @@ namespace Shedule_04.ModalsForm
                 textBoxAddFaculty.Text = "";
             }
         }
+
+
     }
 }

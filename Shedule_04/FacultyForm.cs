@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace Shedule_04
 {
@@ -20,9 +12,9 @@ namespace Shedule_04
         {
             InitializeComponent();
         }
-        
+
         SqlConnection connect = new SqlConnection(DB.connectString);
-        
+
         private void facultyLoad()
         {
             string querieAll = @"SELECT * FROM faculty;";
@@ -59,6 +51,17 @@ namespace Shedule_04
         {
             ModalsForm.ModalFaculty.isNewItem = true;
             modalFaculty.ShowDialog();
+        }
+
+        private void deleteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //string delete = dataGridView1.SelectedCells[1].Value.ToString();
+            //MessageBox.Show(delete);
+            for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+            {
+                int row = dataGridView1.SelectedRows[i].Index;
+                MessageBox.Show(dataGridView1[1,row].Value.ToString());
+            }
         }
     }
 }
