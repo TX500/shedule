@@ -33,8 +33,9 @@ namespace Shedule_04
             while (reader.Read())
             {
                 dataGridView1.Rows.Add();
-                dataGridView1[0, i].Value = N;
-                dataGridView1[1, i].Value = reader[1];
+                dataGridView1[0, i].Value = reader[0];            // id_row
+                dataGridView1[1, i].Value = N;                    // №
+                dataGridView1[2, i].Value = reader[1];
                 i++;
                 N++;
             }
@@ -60,7 +61,7 @@ namespace Shedule_04
             for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
             {
                 int row = dataGridView1.SelectedRows[i].Index;
-                MessageBox.Show(dataGridView1[1,row].Value.ToString());
+                MessageBox.Show(dataGridView1[0,row].Value.ToString());
             }
         }
     }
