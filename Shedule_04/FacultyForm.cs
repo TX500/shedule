@@ -13,10 +13,14 @@ namespace Shedule_04
 {
     public partial class FacultyForm : Form
     {
+
+        Form modalFaculty = new ModalsForm.ModalFaculty();
+
         public FacultyForm()
         {
             InitializeComponent();
         }
+        
         SqlConnection connect = new SqlConnection(DB.connectString);
         
         private void facultyLoad()
@@ -49,6 +53,12 @@ namespace Shedule_04
         private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             facultyLoad();
+        }
+
+        private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ModalsForm.ModalFaculty.isNewItem = true;
+            modalFaculty.ShowDialog();
         }
     }
 }
