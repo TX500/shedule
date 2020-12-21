@@ -32,14 +32,13 @@
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sheduleMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.facultyMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.groupsMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.lecturerMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.subjectMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.classroomsMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
-            this.sheduleMenuMainForm = new System.Windows.Forms.ToolStripMenuItem();
             this.panelDown = new System.Windows.Forms.Panel();
-            this.panelMain = new System.Windows.Forms.Panel();
             this.menuMainForm.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +80,13 @@
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.справочникиToolStripMenuItem.Text = "Справочники";
             // 
+            // sheduleMenuMainForm
+            // 
+            this.sheduleMenuMainForm.Name = "sheduleMenuMainForm";
+            this.sheduleMenuMainForm.Size = new System.Drawing.Size(196, 22);
+            this.sheduleMenuMainForm.Text = "Расписания";
+            this.sheduleMenuMainForm.Click += new System.EventHandler(this.sheduleMenuMainForm_Click);
+            // 
             // facultyMenuMainForm
             // 
             this.facultyMenuMainForm.Name = "facultyMenuMainForm";
@@ -116,13 +122,6 @@
             this.classroomsMenuMainForm.Text = "Аудитории";
             this.classroomsMenuMainForm.Click += new System.EventHandler(this.classroomsMenuMainForm_Click);
             // 
-            // sheduleMenuMainForm
-            // 
-            this.sheduleMenuMainForm.Name = "sheduleMenuMainForm";
-            this.sheduleMenuMainForm.Size = new System.Drawing.Size(196, 22);
-            this.sheduleMenuMainForm.Text = "Расписания";
-            this.sheduleMenuMainForm.Click += new System.EventHandler(this.sheduleMenuMainForm_Click);
-            // 
             // panelDown
             // 
             this.panelDown.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -131,21 +130,11 @@
             this.panelDown.Size = new System.Drawing.Size(784, 36);
             this.panelDown.TabIndex = 2;
             // 
-            // panelMain
-            // 
-            this.panelMain.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 24);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(784, 501);
-            this.panelMain.TabIndex = 3;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelDown);
             this.Controls.Add(this.menuMainForm);
             this.IsMdiContainer = true;
@@ -154,7 +143,6 @@
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.Text = "Курсовой проект - Расписание в ВУЗе";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuMainForm.ResumeLayout(false);
             this.menuMainForm.PerformLayout();
             this.ResumeLayout(false);
@@ -175,7 +163,6 @@
         private System.Windows.Forms.ToolStripMenuItem classroomsMenuMainForm;
         private System.Windows.Forms.ToolStripMenuItem sheduleMenuMainForm;
         private System.Windows.Forms.Panel panelDown;
-        private System.Windows.Forms.Panel panelMain;
     }
 }
 
