@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Shedule_04.ModalsForm
@@ -14,7 +7,7 @@ namespace Shedule_04.ModalsForm
     public partial class ModalFaculty : Form
     {
         public static bool isNewItem;
-        
+
         public ModalFaculty()
         {
             InitializeComponent();
@@ -42,19 +35,45 @@ namespace Shedule_04.ModalsForm
 
         private void addNewFaculty_Click(object sender, EventArgs e)
         {
-            // Проверить на совпадения.
-
             //Добавить новую запись
 
-            string querieAdd = @"INSERT INTO faculty (faculty_name) values('" + textBoxAddFaculty.Text + "');";
-            SqlCommand insert = new SqlCommand(querieAdd, connect);
-            connect.Open();
-            insert.ExecuteNonQuery();
-            connect.Close();
-            textBoxAddFaculty.Text = "";
-            this.Close();
+            if (textBoxAddFaculty.Text == "")
+            {
+                MessageBox.Show("Заполните обязательные поля");
+            }
+            else
+            {
+                try
+                {
+                    string querieAdd = @"INSERT INTO faculty (faculty_name) values('" + textBoxAddFaculty.Text + "');";
+                    SqlCommand insert = new SqlCommand(querieAdd, connect);
+                    connect.Open();
+                    insert.ExecuteNonQuery();
+                    connect.Close();
+                    textBoxAddFaculty.Text = "";
+                    this.Close();
+                }
+                catch (SqlException ex)
+                {
+                    connect.Close();
+                    if (ex.Number == 2627) // Проверка уникального значения
+                    {
+                        MessageBox.Show("Данное имя уже используется.");
+                    }
+                    else
+                    {
+                        MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                    }
+                }
+            }
+        }
 
+        private void textBoxAddFaculty_TextChanged(object sender, EventArgs e)
+        {
+            if(textBoxAddFaculty.Text.Length == 1 && textBoxAddFaculty.Text.Contains(" "))
+            {
+                textBoxAddFaculty.Text = "";
+            }
         }
     }
-    
 }

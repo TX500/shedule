@@ -52,6 +52,7 @@
             this.textBoxAddFaculty.Name = "textBoxAddFaculty";
             this.textBoxAddFaculty.Size = new System.Drawing.Size(408, 26);
             this.textBoxAddFaculty.TabIndex = 1;
+            this.textBoxAddFaculty.TextChanged += new System.EventHandler(this.textBoxAddFaculty_TextChanged);
             // 
             // addNewFaculty
             // 
