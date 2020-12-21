@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace Shedule_04.ModalsForm
             InitializeComponent();
         }
 
+        SqlConnection connect = new SqlConnection(DB.connectString);
+
         private void cancelNewFaculty_Click(object sender, EventArgs e)
         {
             if (textBoxAddFaculty.Text.Length == 0 && isNewItem == true)
@@ -35,6 +38,22 @@ namespace Shedule_04.ModalsForm
                     isNewItem = false;
                 }
             }
+        }
+
+        private void addNewFaculty_Click(object sender, EventArgs e)
+        {
+            // Проверить на совпадения.
+
+            //Добавить новую запись
+
+            string querieAdd = @"INSERT INTO faculty (faculty_name) values('" + textBoxAddFaculty.Text + "');";
+            SqlCommand insert = new SqlCommand(querieAdd, connect);
+            connect.Open();
+            insert.ExecuteNonQuery();
+            connect.Close();
+            textBoxAddFaculty.Text = "";
+            this.Close();
+
         }
     }
     

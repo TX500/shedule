@@ -62,6 +62,7 @@
             this.addNewFaculty.TabIndex = 2;
             this.addNewFaculty.Text = "Сохранить";
             this.addNewFaculty.UseVisualStyleBackColor = true;
+            this.addNewFaculty.Click += new System.EventHandler(this.addNewFaculty_Click);
             // 
             // cancelNewFaculty
             // 
