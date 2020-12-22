@@ -19,7 +19,6 @@ namespace Shedule_04
         {
             string querieAll = @"SELECT * FROM faculty;";
 
-
             SqlCommand table = new SqlCommand(querieAll, connect);
 
             connect.Open();
@@ -56,12 +55,51 @@ namespace Shedule_04
 
         private void deleteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //string delete = dataGridView1.SelectedCells[1].Value.ToString();
-            //MessageBox.Show(delete);
+            // Получаем ИД записей и записываем их в массив ids
+            string[] ids = new string[dataGridView1.SelectedRows.Count];
+
             for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
             {
                 int row = dataGridView1.SelectedRows[i].Index;
-                MessageBox.Show(dataGridView1[0,row].Value.ToString());
+                ids[i] = dataGridView1[0, row].Value.ToString();
+            }
+            massDelete(ids);
+
+        }
+
+        private void massDelete(string[] ids)
+        {
+            string id = "(";
+            for (int i = 0; i < ids.Length; i++)
+            {
+                if (i != ids.Length - 1)
+                {
+                    id += "'" + ids[i] + "',";
+                }
+                else
+                {
+                    id += "'" + ids[i] + "');";
+                }
+            }
+            string querieMassDelete = @"DELETE FROM faculty WHERE id_faculty in " + id;
+
+            if (MessageBox.Show("Вы действительно хотите выбранные записи? Данная операция необратима.", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    SqlCommand table = new SqlCommand(querieMassDelete, connect);
+
+                    connect.Open();
+                    SqlDataReader reader = table.ExecuteReader();
+                    reader.Close();
+                    connect.Close();
+                    facultyLoad();
+                }
+                catch (SqlException ex)
+                {
+                    connect.Close();
+                    MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                }
             }
         }
     }
