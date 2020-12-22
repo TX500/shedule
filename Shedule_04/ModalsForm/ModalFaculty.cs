@@ -9,7 +9,7 @@ namespace Shedule_04.ModalsForm
         public static bool isNewItem;
 
         public static string idItem;
-       
+
 
         public ModalFaculty()
         {
@@ -43,7 +43,7 @@ namespace Shedule_04.ModalsForm
             {
                 MessageBox.Show("Заполните обязательные поля");
             }
-            else
+            if (isNewItem == true)
             {
                 try
                 {
@@ -68,11 +68,34 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
+            else if (isNewItem == false)
+            {
+                try
+                {
+                    string queiryUpdate = @"UPDATE faculty SET faculty_name='" + textBoxAddFaculty.Text + "' WHERE id_faculty ='" + idItem + "'";
+                    SqlCommand update = new SqlCommand(queiryUpdate, connect);
+                    connect.Open();
+                    update.ExecuteNonQuery();
+                    connect.Close();
+                    this.Close();
+                    
+                    // Обновить реестр
+                }
+                catch (SqlException ex)
+                {
+                    connect.Close();
+                    MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Неизвестная ошибка 2");
+            }
         }
 
         private void textBoxAddFaculty_TextChanged(object sender, EventArgs e)
         {
-            if(textBoxAddFaculty.Text.Length == 1 && textBoxAddFaculty.Text.Contains(" "))
+            if (textBoxAddFaculty.Text.Length == 1 && textBoxAddFaculty.Text.Contains(" "))
             {
                 textBoxAddFaculty.Text = "";
             }
@@ -90,7 +113,7 @@ namespace Shedule_04.ModalsForm
                 // Получаем значение для поля по ИД
                 try
                 {
-                    string updateItemName = @"SELECT faculty_name FROM faculty WHERE id_faculty = "+ idItem +";";
+                    string updateItemName = @"SELECT faculty_name FROM faculty WHERE id_faculty = " + idItem + ";";
                     SqlCommand table = new SqlCommand(updateItemName, connect);
                     connect.Open();
                     SqlDataReader reader = table.ExecuteReader();
