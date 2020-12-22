@@ -8,6 +8,9 @@ namespace Shedule_04.ModalsForm
     {
         public static bool isNewItem;
 
+        public static string idItem;
+       
+
         public ModalFaculty()
         {
             InitializeComponent();
@@ -35,7 +38,6 @@ namespace Shedule_04.ModalsForm
 
         private void addNewFaculty_Click(object sender, EventArgs e)
         {
-            //Добавить новую запись
 
             if (textBoxAddFaculty.Text == "")
             {
@@ -74,8 +76,38 @@ namespace Shedule_04.ModalsForm
             {
                 textBoxAddFaculty.Text = "";
             }
+            if (textBoxAddFaculty.Text.IndexOf(" ") == 0)
+            {
+                textBoxAddFaculty.Text = textBoxAddFaculty.Text.Substring(1);
+                textBoxAddFaculty.SelectionStart = textBoxAddFaculty.Text.Length;
+            }
         }
 
+        private void ModalFaculty_Load(object sender, EventArgs e)
+        {
+            if (isNewItem == false)
+            {
+                // Получаем значение для поля по ИД
+                try
+                {
+                    string updateItemName = @"SELECT faculty_name FROM faculty WHERE id_faculty = "+ idItem +";";
+                    SqlCommand table = new SqlCommand(updateItemName, connect);
+                    connect.Open();
+                    SqlDataReader reader = table.ExecuteReader();
+                    reader.Read();
+                    textBoxAddFaculty.Text = reader[0].ToString();
+                    connect.Close();
+                    
+                }
+                catch (SqlException ex)
+                {
+                    connect.Close();
+                    MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                }
 
+
+                //textBoxAddFaculty.Text = idItem;
+            }
+        }
     }
 }

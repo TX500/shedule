@@ -102,5 +102,13 @@ namespace Shedule_04
                 }
             }
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = dataGridView1.CurrentRow.Index;
+            ModalsForm.ModalFaculty.idItem = dataGridView1[0, row].Value.ToString();
+            ModalsForm.ModalFaculty.isNewItem = false;
+            modalFaculty.ShowDialog();
+        }
     }
 }

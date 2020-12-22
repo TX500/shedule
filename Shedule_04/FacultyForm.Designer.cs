@@ -34,11 +34,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelUp = new System.Windows.Forms.Panel();
+            this.deleteLink = new System.Windows.Forms.LinkLabel();
             this.reloadLink = new System.Windows.Forms.LinkLabel();
             this.addLink = new System.Windows.Forms.LinkLabel();
             this.nameForm = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.deleteLink = new System.Windows.Forms.LinkLabel();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +58,20 @@
             this.panelUp.Name = "panelUp";
             this.panelUp.Size = new System.Drawing.Size(859, 45);
             this.panelUp.TabIndex = 0;
+            // 
+            // deleteLink
+            // 
+            this.deleteLink.AutoSize = true;
+            this.deleteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deleteLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.deleteLink.Location = new System.Drawing.Point(323, 16);
+            this.deleteLink.Name = "deleteLink";
+            this.deleteLink.Size = new System.Drawing.Size(63, 16);
+            this.deleteLink.TabIndex = 3;
+            this.deleteLink.TabStop = true;
+            this.deleteLink.Text = "Удалить";
+            this.deleteLink.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.deleteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.deleteLink_LinkClicked);
             // 
             // reloadLink
             // 
@@ -145,20 +159,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(859, 544);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // deleteLink
-            // 
-            this.deleteLink.AutoSize = true;
-            this.deleteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.deleteLink.Location = new System.Drawing.Point(323, 16);
-            this.deleteLink.Name = "deleteLink";
-            this.deleteLink.Size = new System.Drawing.Size(63, 16);
-            this.deleteLink.TabIndex = 3;
-            this.deleteLink.TabStop = true;
-            this.deleteLink.Text = "Удалить";
-            this.deleteLink.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.deleteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.deleteLink_LinkClicked);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // Column3
             // 
