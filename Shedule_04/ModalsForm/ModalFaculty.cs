@@ -18,7 +18,7 @@ namespace Shedule_04.ModalsForm
 
         SqlConnection connect = new SqlConnection(DB.connectString);
 
-        private void cancelNewFaculty_Click(object sender, EventArgs e)
+        private void cancel_Click(object sender, EventArgs e)
         {
             if (textBoxAddFaculty.Text.Length == 0 && isNewItem == true)
             {
@@ -36,7 +36,7 @@ namespace Shedule_04.ModalsForm
             }
         }
 
-        private void addNewFaculty_Click(object sender, EventArgs e)
+        private void save_Click(object sender, EventArgs e)
         {
 
             if (textBoxAddFaculty.Text == "")
@@ -97,16 +97,12 @@ namespace Shedule_04.ModalsForm
                     reader.Read();
                     textBoxAddFaculty.Text = reader[0].ToString();
                     connect.Close();
-                    
                 }
                 catch (SqlException ex)
                 {
                     connect.Close();
                     MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
                 }
-
-
-                //textBoxAddFaculty.Text = idItem;
             }
         }
     }

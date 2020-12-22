@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxAddFaculty = new System.Windows.Forms.TextBox();
-            this.addNewFaculty = new System.Windows.Forms.Button();
-            this.cancelNewFaculty = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -54,27 +54,27 @@
             this.textBoxAddFaculty.TabIndex = 1;
             this.textBoxAddFaculty.TextChanged += new System.EventHandler(this.textBoxAddFaculty_TextChanged);
             // 
-            // addNewFaculty
+            // save
             // 
-            this.addNewFaculty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addNewFaculty.Location = new System.Drawing.Point(143, 143);
-            this.addNewFaculty.Name = "addNewFaculty";
-            this.addNewFaculty.Size = new System.Drawing.Size(118, 34);
-            this.addNewFaculty.TabIndex = 2;
-            this.addNewFaculty.Text = "Сохранить";
-            this.addNewFaculty.UseVisualStyleBackColor = true;
-            this.addNewFaculty.Click += new System.EventHandler(this.addNewFaculty_Click);
+            this.save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.save.Location = new System.Drawing.Point(143, 143);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(118, 34);
+            this.save.TabIndex = 2;
+            this.save.Text = "Сохранить";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
             // 
-            // cancelNewFaculty
+            // cancel
             // 
-            this.cancelNewFaculty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cancelNewFaculty.Location = new System.Drawing.Point(286, 143);
-            this.cancelNewFaculty.Name = "cancelNewFaculty";
-            this.cancelNewFaculty.Size = new System.Drawing.Size(118, 34);
-            this.cancelNewFaculty.TabIndex = 3;
-            this.cancelNewFaculty.Text = "Отмена";
-            this.cancelNewFaculty.UseVisualStyleBackColor = true;
-            this.cancelNewFaculty.Click += new System.EventHandler(this.cancelNewFaculty_Click);
+            this.cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cancel.Location = new System.Drawing.Point(286, 143);
+            this.cancel.Name = "cancel";
+            this.cancel.Size = new System.Drawing.Size(118, 34);
+            this.cancel.TabIndex = 3;
+            this.cancel.Text = "Отмена";
+            this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
             // ModalFaculty
             // 
@@ -82,8 +82,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 233);
             this.ControlBox = false;
-            this.Controls.Add(this.cancelNewFaculty);
-            this.Controls.Add(this.addNewFaculty);
+            this.Controls.Add(this.cancel);
+            this.Controls.Add(this.save);
             this.Controls.Add(this.textBoxAddFaculty);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -106,7 +106,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxAddFaculty;
-        private System.Windows.Forms.Button addNewFaculty;
-        private System.Windows.Forms.Button cancelNewFaculty;
+        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.Button cancel;
     }
 }
