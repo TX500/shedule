@@ -51,7 +51,15 @@ namespace Shedule_04.ModalsForm
             {
                 MessageBox.Show("Заполните обязательные поля");
             }
-            else if (isNewItem == true)
+            else 
+            {
+                while(textBoxAddFaculty.Text[textBoxAddFaculty.Text.Length - 1] == ' ')
+                {
+                    textBoxAddFaculty.Text = textBoxAddFaculty.Text.Substring(0, textBoxAddFaculty.Text.Length-1);
+                }
+            }
+            
+            if (isNewItem == true && textBoxAddFaculty.Text != "")
             {
                 try
                 {
@@ -77,7 +85,8 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
-            else if (isNewItem == false && oldName != textBoxAddFaculty.Text)
+            
+            if (isNewItem == false && oldName != textBoxAddFaculty.Text)
             {
                 if (MessageBox.Show("Вы действительно хотите внести изменения? Данная операция необратима.", "Изменение", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -97,7 +106,8 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
-            else
+            
+            if(isNewItem == false && oldName == textBoxAddFaculty.Text)
             {
                 this.Close();
             }
