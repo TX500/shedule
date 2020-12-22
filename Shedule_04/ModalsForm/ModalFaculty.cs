@@ -10,6 +10,7 @@ namespace Shedule_04.ModalsForm
 
         public static string idItem;
 
+        string oldName;
 
         public ModalFaculty()
         {
@@ -27,11 +28,18 @@ namespace Shedule_04.ModalsForm
             }
             else
             {
-                if (MessageBox.Show("Вы действительно хотите закрыть окно? Изменения не будут применены", "Отмена", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (oldName != textBoxAddFaculty.Text)
                 {
-                    textBoxAddFaculty.Text = "";
+                    if (MessageBox.Show("Вы действительно хотите закрыть окно? Изменения не будут применены", "Отмена", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        textBoxAddFaculty.Text = "";
+                        this.Close();
+                        isNewItem = false;
+                    }
+                }
+                else
+                {
                     this.Close();
-                    isNewItem = false;
                 }
             }
         }
@@ -43,7 +51,7 @@ namespace Shedule_04.ModalsForm
             {
                 MessageBox.Show("Заполните обязательные поля");
             }
-            if (isNewItem == true)
+            else if (isNewItem == true)
             {
                 try
                 {
@@ -54,6 +62,7 @@ namespace Shedule_04.ModalsForm
                     connect.Close();
                     textBoxAddFaculty.Text = "";
                     this.Close();
+                    
                 }
                 catch (SqlException ex)
                 {
@@ -68,28 +77,29 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
-            else if (isNewItem == false)
+            else if (isNewItem == false && oldName != textBoxAddFaculty.Text)
             {
-                try
+                if (MessageBox.Show("Вы действительно хотите внести изменения? Данная операция необратима.", "Изменение", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    string queiryUpdate = @"UPDATE faculty SET faculty_name='" + textBoxAddFaculty.Text + "' WHERE id_faculty ='" + idItem + "'";
-                    SqlCommand update = new SqlCommand(queiryUpdate, connect);
-                    connect.Open();
-                    update.ExecuteNonQuery();
-                    connect.Close();
-                    this.Close();
-                    
-                    // Обновить реестр
-                }
-                catch (SqlException ex)
-                {
-                    connect.Close();
-                    MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                    try
+                    {
+                        string queiryUpdate = @"UPDATE faculty SET faculty_name='" + textBoxAddFaculty.Text + "' WHERE id_faculty ='" + idItem + "'";
+                        SqlCommand update = new SqlCommand(queiryUpdate, connect);
+                        connect.Open();
+                        update.ExecuteNonQuery();
+                        connect.Close();
+                        this.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        connect.Close();
+                        MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Неизвестная ошибка 2");
+                this.Close();
             }
         }
 
@@ -119,6 +129,7 @@ namespace Shedule_04.ModalsForm
                     SqlDataReader reader = table.ExecuteReader();
                     reader.Read();
                     textBoxAddFaculty.Text = reader[0].ToString();
+                    oldName = textBoxAddFaculty.Text;
                     connect.Close();
                 }
                 catch (SqlException ex)
@@ -126,6 +137,10 @@ namespace Shedule_04.ModalsForm
                     connect.Close();
                     MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
                 }
+            }
+            else
+            {
+                textBoxAddFaculty.Text = oldName = "";
             }
         }
     }
