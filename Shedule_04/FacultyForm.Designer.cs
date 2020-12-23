@@ -64,7 +64,7 @@
             this.deleteLink.AutoSize = true;
             this.deleteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.deleteLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.deleteLink.Location = new System.Drawing.Point(323, 16);
+            this.deleteLink.Location = new System.Drawing.Point(388, 16);
             this.deleteLink.Name = "deleteLink";
             this.deleteLink.Size = new System.Drawing.Size(63, 16);
             this.deleteLink.TabIndex = 3;
@@ -78,7 +78,7 @@
             this.reloadLink.AutoSize = true;
             this.reloadLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.reloadLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.reloadLink.Location = new System.Drawing.Point(245, 16);
+            this.reloadLink.Location = new System.Drawing.Point(310, 16);
             this.reloadLink.Name = "reloadLink";
             this.reloadLink.Size = new System.Drawing.Size(72, 16);
             this.reloadLink.TabIndex = 2;
@@ -92,7 +92,7 @@
             this.addLink.AutoSize = true;
             this.addLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.addLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.addLink.Location = new System.Drawing.Point(168, 16);
+            this.addLink.Location = new System.Drawing.Point(233, 16);
             this.addLink.Name = "addLink";
             this.addLink.Size = new System.Drawing.Size(71, 16);
             this.addLink.TabIndex = 1;
