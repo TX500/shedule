@@ -1,5 +1,13 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Shedule_04
 {
@@ -15,7 +23,7 @@ namespace Shedule_04
 
         SqlConnection connect = new SqlConnection(DB.connectString);
 
-        private void facultyLoad()
+        private void tableLoad()
         {
             string querieAll = @"SELECT * FROM faculty;";
 
@@ -40,31 +48,6 @@ namespace Shedule_04
             }
             reader.Close();
             connect.Close();
-        }
-
-        private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            facultyLoad();
-        }
-
-        private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ModalsForm.ModalFaculty.isNewItem = true;
-            modalFaculty.ShowDialog();
-        }
-
-        private void deleteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            // Получаем ИД записей и записываем их в массив ids
-            string[] ids = new string[dataGridView1.SelectedRows.Count];
-
-            for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
-            {
-                int row = dataGridView1.SelectedRows[i].Index;
-                ids[i] = dataGridView1[0, row].Value.ToString();
-            }
-            massDelete(ids);
-
         }
 
         private void massDelete(string[] ids)
@@ -93,7 +76,7 @@ namespace Shedule_04
                     SqlDataReader reader = table.ExecuteReader();
                     reader.Close();
                     connect.Close();
-                    facultyLoad();
+                    tableLoad();
                 }
                 catch (SqlException ex)
                 {
@@ -101,6 +84,30 @@ namespace Shedule_04
                     MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
                 }
             }
+        }
+
+        private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ModalsForm.ModalFaculty.isNewItem = true;
+            modalFaculty.ShowDialog();
+        }
+
+        private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tableLoad();
+        }
+
+        private void deleteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Получаем ИД записей и записываем их в массив ids
+            string[] ids = new string[dataGridView1.SelectedRows.Count];
+
+            for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+            {
+                int row = dataGridView1.SelectedRows[i].Index;
+                ids[i] = dataGridView1[0, row].Value.ToString();
+            }
+            massDelete(ids);
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
