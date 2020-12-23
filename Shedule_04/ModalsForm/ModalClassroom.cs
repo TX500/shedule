@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace Shedule_04.ModalsForm
 {
-    public partial class ModalFaculty : Form
+    public partial class ModalClassroom : Form
     {
         public static bool isNewItem;
 
@@ -20,21 +20,21 @@ namespace Shedule_04.ModalsForm
 
         string oldName;
 
-        public ModalFaculty()
+        public ModalClassroom()
         {
             InitializeComponent();
         }
 
         SqlConnection connect = new SqlConnection(DB.connectString);
 
-        private void ModalFaculty_Load(object sender, EventArgs e)
+        private void ModalClassroom_Load(object sender, EventArgs e)
         {
             if (isNewItem == false)
             {
                 // Получаем значение для поля по ИД
                 try
                 {
-                    string updateItemName = @"SELECT faculty_name FROM faculty WHERE id_faculty = " + idItem + ";";
+                    string updateItemName = @"SELECT classroom_name FROM classroom WHERE id_classroom = " + idItem + ";";
                     SqlCommand table = new SqlCommand(updateItemName, connect);
                     connect.Open();
                     SqlDataReader reader = table.ExecuteReader();
@@ -54,7 +54,7 @@ namespace Shedule_04.ModalsForm
                 textBoxName.Text = oldName = "";
             }
         }
-        
+
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
             if (textBoxName.Text.Length == 1 && textBoxName.Text.Contains(" "))
@@ -70,31 +70,30 @@ namespace Shedule_04.ModalsForm
 
         private void save_Click(object sender, EventArgs e)
         {
-
             if (textBoxName.Text == "")
             {
                 MessageBox.Show("Заполните обязательные поля");
             }
-            else 
+            else
             {
-                while(textBoxName.Text[textBoxName.Text.Length - 1] == ' ')
+                while (textBoxName.Text[textBoxName.Text.Length - 1] == ' ')
                 {
-                    textBoxName.Text = textBoxName.Text.Substring(0, textBoxName.Text.Length-1);
+                    textBoxName.Text = textBoxName.Text.Substring(0, textBoxName.Text.Length - 1);
                 }
             }
-            
+
             if (isNewItem == true && textBoxName.Text != "")
             {
                 try
                 {
-                    string querieAdd = @"INSERT INTO faculty (faculty_name) values('" + textBoxName.Text + "');";
+                    string querieAdd = @"INSERT INTO classroom (classroom_name) values('" + textBoxName.Text + "');";
                     SqlCommand insert = new SqlCommand(querieAdd, connect);
                     connect.Open();
                     insert.ExecuteNonQuery();
                     connect.Close();
                     textBoxName.Text = "";
                     this.Close();
-                    
+
                 }
                 catch (SqlException ex)
                 {
@@ -109,14 +108,14 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
-            
+
             if (isNewItem == false && oldName != textBoxName.Text)
             {
                 if (MessageBox.Show("Вы действительно хотите внести изменения? Данная операция необратима.", "Изменение", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     try
                     {
-                        string queiryUpdate = @"UPDATE faculty SET faculty_name='" + textBoxName.Text + "' WHERE id_faculty ='" + idItem + "'";
+                        string queiryUpdate = @"UPDATE classroom SET classroom_name='" + textBoxName.Text + "' WHERE id_classroom ='" + idItem + "'";
                         SqlCommand update = new SqlCommand(queiryUpdate, connect);
                         connect.Open();
                         update.ExecuteNonQuery();
@@ -130,8 +129,8 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
-            
-            if(isNewItem == false && oldName == textBoxName.Text)
+
+            if (isNewItem == false && oldName == textBoxName.Text)
             {
                 this.Close();
             }
@@ -161,9 +160,5 @@ namespace Shedule_04.ModalsForm
                 }
             }
         }
-
-
-
-
     }
 }

@@ -77,11 +77,23 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModalsForm\ModalClassroom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModalsForm\ModalClassroom.Designer.cs">
+      <DependentUpon>ModalClassroom.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModalsForm\ModalFaculty.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ModalsForm\ModalFaculty.Designer.cs">
       <DependentUpon>ModalFaculty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModalsForm\ModalSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModalsForm\ModalSubject.Designer.cs">
+      <DependentUpon>ModalSubject.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,8 +124,14 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModalsForm\ModalClassroom.resx">
+      <DependentUpon>ModalClassroom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModalsForm\ModalFaculty.resx">
       <DependentUpon>ModalFaculty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModalsForm\ModalSubject.resx">
+      <DependentUpon>ModalSubject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
