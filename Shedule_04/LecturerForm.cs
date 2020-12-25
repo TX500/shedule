@@ -64,7 +64,7 @@ namespace Shedule_04
                     id += "'" + ids[i] + "');";
                 }
             }
-            string querieMassDelete = @"DELETE FROM faculty WHERE id_faculty in " + id;
+            string querieMassDelete = @"DELETE FROM lecturer WHERE id_lecturer in " + id;
 
             if (MessageBox.Show("Вы действительно хотите выбранные записи? Данная операция необратима.", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
