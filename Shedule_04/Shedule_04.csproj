@@ -89,6 +89,12 @@
     <Compile Include="ModalsForm\ModalFaculty.Designer.cs">
       <DependentUpon>ModalFaculty.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModalsForm\ModalLecturer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModalsForm\ModalLecturer.Designer.cs">
+      <DependentUpon>ModalLecturer.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModalsForm\ModalSubject.cs">
       <SubType>Form</SubType>
     </Compile>
