@@ -97,7 +97,7 @@ namespace Shedule_04.ModalsForm
             }
             else
             {
-                while (textBoxName.Text[textBoxName.Text.Length - 1] == ' ')
+                while (textBoxSurname.Text[textBoxSurname.Text.Length - 1] == ' ')
                 {
                     textBoxSurname.Text = textBoxSurname.Text.Substring(0, textBoxSurname.Text.Length - 1);
                 }
@@ -105,9 +105,12 @@ namespace Shedule_04.ModalsForm
                 {
                     textBoxName.Text = textBoxName.Text.Substring(0, textBoxName.Text.Length - 1);
                 }
-                while (textBoxMiddlename.Text[textBoxMiddlename.Text.Length - 1] == ' ')
+                if (textBoxMiddlename.Text != "")
                 {
-                    textBoxMiddlename.Text = textBoxMiddlename.Text.Substring(0, textBoxMiddlename.Text.Length - 1);
+                    while (textBoxMiddlename.Text[textBoxMiddlename.Text.Length - 1] == ' ')
+                    {
+                        textBoxMiddlename.Text = textBoxMiddlename.Text.Substring(0, textBoxMiddlename.Text.Length - 1);
+                    }
                 }
             }
 
@@ -132,7 +135,11 @@ namespace Shedule_04.ModalsForm
                 }
             }
 
-            if (isNewItem == false && oldName != (textBoxSurname.Text + textBoxName.Text + textBoxMiddlename.Text))
+            if (textBoxSurname.Text == "" || textBoxName.Text == "")
+            {
+                MessageBox.Show("Заполните обязательные поля222");
+            }
+            else if (isNewItem == false && oldName != (textBoxSurname.Text + textBoxName.Text + textBoxMiddlename.Text))
             {
                 if (MessageBox.Show("Вы действительно хотите внести изменения? Данная операция необратима.", "Изменение", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -153,7 +160,7 @@ namespace Shedule_04.ModalsForm
                 }
             }
 
-            if (isNewItem == false && oldName == textBoxName.Text)
+            if (isNewItem == false && oldName == textBoxSurname.Text + textBoxName.Text + textBoxMiddlename.Text)
             {
                 this.Close();
             }
