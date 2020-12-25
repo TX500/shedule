@@ -136,6 +136,9 @@
     <EmbeddedResource Include="ModalsForm\ModalFaculty.resx">
       <DependentUpon>ModalFaculty.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModalsForm\ModalLecturer.resx">
+      <DependentUpon>ModalLecturer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModalsForm\ModalSubject.resx">
       <DependentUpon>ModalSubject.cs</DependentUpon>
     </EmbeddedResource>
