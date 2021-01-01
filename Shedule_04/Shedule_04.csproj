@@ -89,6 +89,12 @@
     <Compile Include="ModalsForm\ModalFaculty.Designer.cs">
       <DependentUpon>ModalFaculty.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModalsForm\ModalGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModalsForm\ModalGroup.Designer.cs">
+      <DependentUpon>ModalGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModalsForm\ModalLecturer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModalsForm\ModalFaculty.resx">
       <DependentUpon>ModalFaculty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModalsForm\ModalGroup.resx">
+      <DependentUpon>ModalGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModalsForm\ModalLecturer.resx">
       <DependentUpon>ModalLecturer.cs</DependentUpon>
