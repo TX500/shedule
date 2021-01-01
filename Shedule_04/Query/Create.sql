@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS faculty, tgroups, subject, classrooms, lecturer, shedule;
+DROP TABLE IF EXISTS groups, faculty, subject, classroom, lecturer, shedule;
 
 CREATE TABLE faculty (
 	id_faculty bigint NOT NULL IDENTITY, 
@@ -20,7 +20,7 @@ CREATE TABLE subject (
 	primary key (id_subject)
 );
 
-CREATE TABLE classrooms (
+CREATE TABLE classroom (
 	id_classroom bigint NOT NULL IDENTITY,
 	classroom_name varchar(20) NOT NULL UNIQUE,
 	primary key (id_classroom)
@@ -41,22 +41,9 @@ CREATE TABLE shedule (
 	task_number integer NOT NULL,
 	fk_subject bigint FOREIGN KEY REFERENCES subject (id_subject),
 	occupation varchar(255) NOT NULL,
-	fk_classroom bigint FOREIGN KEY REFERENCES classrooms (id_classroom),
+	fk_classroom bigint FOREIGN KEY REFERENCES classroom (id_classroom),
 	fk_lecturer bigint FOREIGN KEY REFERENCES lecturer (id_lecturer),
 	even integer NOT NULL,
 	fuull integer NOT NULL,
 	primary key (id_shedule)
 );
-
-INSERT INTO faculty (faculty_name) VALUES
-	('Институт инженерии и машиностроения'),
-	('Институт инженеров строительства и транспорта'),
-	('Институт архитектуры и дизайна'),
-	('Заочный факультет'),
-	('Институт цифровых систем'),
-	('Институт химии и химической технологии');
-
-INSERT INTO groups (group_name, course, faculty) VALUES
-	('МВ-10', '1', '1'),
-	('ММ-11', '1', '1'),
-	('МТ-15', '1', '1');
