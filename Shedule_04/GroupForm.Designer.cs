@@ -68,6 +68,7 @@
             this.deleteLink.TabStop = true;
             this.deleteLink.Text = "Удалить";
             this.deleteLink.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.deleteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.deleteLink_LinkClicked);
             // 
             // reloadLink
             // 
@@ -81,6 +82,7 @@
             this.reloadLink.TabStop = true;
             this.reloadLink.Text = "Обновить";
             this.reloadLink.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.reloadLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.reloadLink_LinkClicked);
             // 
             // addLink
             // 
@@ -94,6 +96,7 @@
             this.addLink.TabStop = true;
             this.addLink.Text = "Добавить";
             this.addLink.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.addLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.addLink_LinkClicked);
             // 
             // nameForm
             // 
@@ -125,6 +128,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(800, 405);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // Column1
             // 
