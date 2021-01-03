@@ -124,5 +124,10 @@ namespace Shedule_04
             ModalsForm.ModalSubject.isNewItem = false;
             modalSubject.ShowDialog();
         }
+
+        private void SubjectForm_Load(object sender, EventArgs e)
+        {
+            tableLoad();
+        }
     }
 }

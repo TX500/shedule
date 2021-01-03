@@ -126,5 +126,10 @@ namespace Shedule_04
             ModalsForm.ModalGroup.isNewItem = false;
             modalGroup.ShowDialog();
         }
+
+        private void GroupForm_Load(object sender, EventArgs e)
+        {
+            tableLoad();
+        }
     }
 }

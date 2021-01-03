@@ -125,5 +125,10 @@ namespace Shedule_04
             ModalsForm.ModalLecturer.isNewItem = false;
             modalLecturer.ShowDialog();
         }
+
+        private void LecturerForm_Load(object sender, EventArgs e)
+        {
+            tableLoad();
+        }
     }
 }

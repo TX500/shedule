@@ -124,5 +124,10 @@ namespace Shedule_04
             ModalsForm.ModalClassroom.isNewItem = false;
             modalClassroom.ShowDialog();
         }
+
+        private void ClassroomForm_Load(object sender, EventArgs e)
+        {
+            tableLoad();
+        }
     }
 }

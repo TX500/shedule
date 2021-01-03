@@ -94,7 +94,6 @@ namespace Shedule_04.ModalsForm
                     connect.Close();
                     textBoxName.Text = "";
                     this.Close();
-                    
                 }
                 catch (SqlException ex)
                 {
