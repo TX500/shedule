@@ -137,9 +137,8 @@ namespace Shedule_04.ModalsForm
 
             if (textBoxSurname.Text == "" || textBoxName.Text == "")
             {
-                MessageBox.Show("Заполните обязательные поля222");
             }
-            else if (isNewItem == false && oldName != (textBoxSurname.Text + textBoxName.Text + textBoxMiddlename.Text))
+            else if (isNewItem == false && oldName != (textBoxSurname.Text + textBoxName.Text + textBoxMiddlename.Text) && (textBoxSurname.Text != "" || textBoxName.Text != ""))
             {
                 if (MessageBox.Show("Вы действительно хотите внести изменения? Данная операция необратима.", "Изменение", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {

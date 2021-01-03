@@ -141,14 +141,24 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
-
-            if (isNewItem == false && (oldName != textBoxName.Text || oldCourse != comboBox1.SelectedItem.ToString() || oldFaculty != comboBox2.SelectedItem.ToString()))
+            if (textBoxName.Text == "")
+            {
+            }
+            else if (isNewItem == false && (oldName != textBoxName.Text || oldCourse != comboBox1.SelectedItem.ToString() || oldFaculty != comboBox2.SelectedItem.ToString()))
             {
                 if (MessageBox.Show("Вы действительно хотите внести изменения? Данная операция необратима.", "Изменение", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     try
                     {
-                        string queiryUpdate = @"UPDATE groups SET group_name = '" + textBoxName.Text + "', course = '" + comboBox1.SelectedItem.ToString() + "', faculty = '" + comboBox2.SelectedItem.ToString() + "' WHERE id_group ='" + idItem + "'";
+                        string getID = @"SELECT id_faculty FROM faculty WHERE faculty_name = '"+comboBox2.SelectedItem.ToString()+"'";
+                        SqlCommand table = new SqlCommand(getID, connect);
+                        connect.Open();
+                        SqlDataReader reader = table.ExecuteReader();
+                        reader.Read();
+                        string idFaculty = reader[0].ToString();
+                        connect.Close();
+
+                        string queiryUpdate = @"UPDATE groups SET group_name = '" + textBoxName.Text + "', course = '" + comboBox1.SelectedItem.ToString() + "', faculty = '" + idFaculty +"' WHERE id_group ='" + idItem + "'";
                         SqlCommand update = new SqlCommand(queiryUpdate, connect);
                         connect.Open();
                         update.ExecuteNonQuery();

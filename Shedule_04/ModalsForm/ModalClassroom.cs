@@ -109,7 +109,7 @@ namespace Shedule_04.ModalsForm
                 }
             }
 
-            if (isNewItem == false && oldName != textBoxName.Text)
+            if (isNewItem == false && oldName != textBoxName.Text && textBoxName.Text != "")
             {
                 if (MessageBox.Show("Вы действительно хотите внести изменения? Данная операция необратима.", "Изменение", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
