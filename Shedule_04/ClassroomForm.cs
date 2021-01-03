@@ -81,7 +81,14 @@ namespace Shedule_04
                 catch (SqlException ex)
                 {
                     connect.Close();
-                    MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                    if (ex.Number == 547) // Каскадное удаление
+                    {
+                        MessageBox.Show("Удаление невозможно. Некоторые записи используются в других документах");
+                    }
+                    else
+                    {
+                        MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                    }
                 }
             }
         }

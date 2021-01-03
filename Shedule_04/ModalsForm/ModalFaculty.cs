@@ -126,7 +126,14 @@ namespace Shedule_04.ModalsForm
                     catch (SqlException ex)
                     {
                         connect.Close();
-                        MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                        if (ex.Number == 2627) // Проверка уникального значения
+                        {
+                            MessageBox.Show("Данное имя уже используется.");
+                        }
+                        else
+                        {
+                            MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                        }
                     }
                 }
             }
