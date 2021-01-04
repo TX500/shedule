@@ -1,6 +1,6 @@
 ﻿namespace Shedule_04
 {
-    partial class SheduleForm
+    partial class SheduleGroupForm
     {
         /// <summary>
         /// Required designer variable.
@@ -38,6 +38,14 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.panelUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -52,15 +60,15 @@
             this.panelUp.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUp.Location = new System.Drawing.Point(0, 0);
             this.panelUp.Name = "panelUp";
-            this.panelUp.Size = new System.Drawing.Size(806, 45);
-            this.panelUp.TabIndex = 1;
+            this.panelUp.Size = new System.Drawing.Size(1125, 45);
+            this.panelUp.TabIndex = 2;
             // 
             // deleteLink
             // 
             this.deleteLink.AutoSize = true;
             this.deleteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.deleteLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.deleteLink.Location = new System.Drawing.Point(388, 16);
+            this.deleteLink.Location = new System.Drawing.Point(982, 16);
             this.deleteLink.Name = "deleteLink";
             this.deleteLink.Size = new System.Drawing.Size(63, 16);
             this.deleteLink.TabIndex = 3;
@@ -73,7 +81,7 @@
             this.reloadLink.AutoSize = true;
             this.reloadLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.reloadLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.reloadLink.Location = new System.Drawing.Point(310, 16);
+            this.reloadLink.Location = new System.Drawing.Point(904, 16);
             this.reloadLink.Name = "reloadLink";
             this.reloadLink.Size = new System.Drawing.Size(72, 16);
             this.reloadLink.TabIndex = 2;
@@ -86,7 +94,7 @@
             this.addLink.AutoSize = true;
             this.addLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.addLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.addLink.Location = new System.Drawing.Point(233, 16);
+            this.addLink.Location = new System.Drawing.Point(827, 16);
             this.addLink.Name = "addLink";
             this.addLink.Size = new System.Drawing.Size(71, 16);
             this.addLink.TabIndex = 1;
@@ -100,9 +108,9 @@
             this.nameForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameForm.Location = new System.Drawing.Point(13, 13);
             this.nameForm.Name = "nameForm";
-            this.nameForm.Size = new System.Drawing.Size(108, 20);
+            this.nameForm.Size = new System.Drawing.Size(176, 20);
             this.nameForm.TabIndex = 0;
-            this.nameForm.Text = "Расписания";
+            this.nameForm.Text = "Расписание группы ";
             this.nameForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridView1
@@ -115,13 +123,12 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataGridView1.Location = new System.Drawing.Point(0, 45);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(806, 407);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.Size = new System.Drawing.Size(759, 603);
+            this.dataGridView1.TabIndex = 3;
             // 
             // Column1
             // 
@@ -134,39 +141,117 @@
             // Column2
             // 
             this.Column2.Frozen = true;
-            this.Column2.HeaderText = "№";
+            this.Column2.HeaderText = "Номер пары";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "Период";
+            this.Column3.Frozen = true;
+            this.Column3.HeaderText = "Время занятия";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "Группа";
+            this.Column4.HeaderText = "Занятие";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
-            // SheduleForm
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(902, 154);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(810, 157);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "time";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(810, 200);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "subject";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(902, 197);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(810, 301);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "classroom";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(902, 298);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 21);
+            this.comboBox3.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(810, 258);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "lecturer";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(902, 255);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(121, 21);
+            this.comboBox4.TabIndex = 8;
+            // 
+            // SheduleGroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(806, 452);
+            this.ClientSize = new System.Drawing.Size(1125, 648);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelUp);
-            this.Name = "SheduleForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Расписания";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Name = "SheduleGroupForm";
+            this.Text = "SheduleGroupForm";
             this.panelUp.ResumeLayout(false);
             this.panelUp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -182,5 +267,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox4;
     }
 }

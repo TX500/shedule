@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS groups, faculty, subject, classroom, lecturer, shedule;
+DROP TABLE IF EXISTS groups, faculty, subject, classroom, lecturer, shedule, shedule_time;
 
 CREATE TABLE faculty (
 	id_faculty bigint NOT NULL IDENTITY, 
@@ -34,16 +34,13 @@ CREATE TABLE lecturer (
 	primary key (id_lecturer)
 );
 
-CREATE TABLE shedule (
-	id_shedule bigint NOT NULL IDENTITY,
+CREATE TABLE shedule_time(
+	id_shTime bigint NOT NULL IDENTITY,
 	fk_group bigint FOREIGN KEY REFERENCES groups (id_group),
-	day integer NOT NULL,
+	day varchar(255) NOT NULL,
 	task_number integer NOT NULL,
 	fk_subject bigint FOREIGN KEY REFERENCES subject (id_subject),
-	occupation varchar(255) NOT NULL,
 	fk_classroom bigint FOREIGN KEY REFERENCES classroom (id_classroom),
 	fk_lecturer bigint FOREIGN KEY REFERENCES lecturer (id_lecturer),
-	even integer NOT NULL,
-	fuull integer NOT NULL,
-	primary key (id_shedule)
+	primary key (id_shTime)
 );
