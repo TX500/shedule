@@ -7,6 +7,8 @@ namespace Shedule_04
     {
         public MainForm()
         {
+            Form Auth = new AuthForm();
+            Auth.ShowDialog();
             InitializeComponent();
         }
 
