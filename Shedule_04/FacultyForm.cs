@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Shedule_04
 {
@@ -15,8 +8,7 @@ namespace Shedule_04
     {
 
         Form modalFaculty = new ModalsForm.ModalFaculty();
-        
-       
+
         public FacultyForm()
         {
             InitializeComponent();
@@ -41,9 +33,9 @@ namespace Shedule_04
             while (reader.Read())
             {
                 dataGridView1.Rows.Add();
-                dataGridView1[0, i].Value = reader[0];            // id_row
-                dataGridView1[1, i].Value = N;                    // №
-                dataGridView1[2, i].Value = reader[1];
+                dataGridView1[0, i].Value = reader[0];              // id_row
+                dataGridView1[1, i].Value = N;                      // №
+                dataGridView1[2, i].Value = reader[1];              // faculty_name
                 i++;
                 N++;
             }

@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Shedule_04
 {
@@ -97,9 +90,7 @@ namespace Shedule_04
         {
             ModalsForm.ModalLecturer.isNewItem = true;
             modalLecturer.FormClosed += new FormClosedEventHandler(modalLecturer_FormClosed);
-
             modalLecturer.ShowDialog();
-
         }
 
         private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -119,8 +110,6 @@ namespace Shedule_04
             }
             massDelete(ids);
         }
-
-       
 
         private void LecturerForm_Load(object sender, EventArgs e)
         {

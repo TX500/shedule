@@ -37,7 +37,6 @@ namespace Shedule_04.ModalsForm
                 {
                     comboBox2.Items.Add(reader[0].ToString());
                 }
-
                 connect.Close();
             }
             catch (SqlException ex)

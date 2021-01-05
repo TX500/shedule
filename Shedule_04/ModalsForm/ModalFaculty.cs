@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-
+using System.Windows.Forms;
 
 namespace Shedule_04.ModalsForm
 {
@@ -54,7 +46,7 @@ namespace Shedule_04.ModalsForm
                 textBoxName.Text = oldName = "";
             }
         }
-        
+
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
             if (textBoxName.Text.Length == 1 && textBoxName.Text.Contains(" "))
@@ -70,19 +62,18 @@ namespace Shedule_04.ModalsForm
 
         private void save_Click(object sender, EventArgs e)
         {
-
             if (textBoxName.Text == "")
             {
                 MessageBox.Show("Заполните обязательные поля");
             }
-            else 
+            else
             {
-                while(textBoxName.Text[textBoxName.Text.Length - 1] == ' ')
+                while (textBoxName.Text[textBoxName.Text.Length - 1] == ' ')
                 {
-                    textBoxName.Text = textBoxName.Text.Substring(0, textBoxName.Text.Length-1);
+                    textBoxName.Text = textBoxName.Text.Substring(0, textBoxName.Text.Length - 1);
                 }
             }
-            
+
             if (isNewItem == true && textBoxName.Text != "")
             {
                 try
@@ -108,7 +99,7 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
-            
+
             if (isNewItem == false && oldName != textBoxName.Text && textBoxName.Text != "")
             {
                 if (MessageBox.Show("Вы действительно хотите внести изменения? Данная операция необратима.", "Изменение", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -136,8 +127,8 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
-            
-            if(isNewItem == false && oldName == textBoxName.Text)
+
+            if (isNewItem == false && oldName == textBoxName.Text)
             {
                 this.Close();
             }

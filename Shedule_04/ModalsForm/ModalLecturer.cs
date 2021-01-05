@@ -127,7 +127,6 @@ namespace Shedule_04.ModalsForm
                     textBoxName.Text = "";
                     textBoxMiddlename.Text = "";
                     this.Close();
-
                 }
                 catch (SqlException ex)
                 {

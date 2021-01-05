@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Shedule_04
@@ -42,7 +35,7 @@ namespace Shedule_04
                 dataGridView1.Rows.Add();
                 dataGridView1[0, i].Value = reader[0];            // id_row
                 dataGridView1[1, i].Value = N;                    // №
-                dataGridView1[2, i].Value = reader[2];            // Куср  
+                dataGridView1[2, i].Value = reader[2];            // Курс  
                 dataGridView1[3, i].Value = reader[1];            // Группа  
                 dataGridView1[4, i].Value = reader[3];            // Факультет
                 i++;
@@ -99,7 +92,6 @@ namespace Shedule_04
         {
             ModalsForm.ModalGroup.isNewItem = true;
             modalGroup.FormClosed += new FormClosedEventHandler(modalGroup_FormClosed);
-
             modalGroup.ShowDialog();
         }
 

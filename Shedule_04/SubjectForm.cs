@@ -40,9 +40,9 @@ namespace Shedule_04
             while (reader.Read())
             {
                 dataGridView1.Rows.Add();
-                dataGridView1[0, i].Value = reader[0];            // id_row
-                dataGridView1[1, i].Value = N;                    // №
-                dataGridView1[2, i].Value = reader[1];
+                dataGridView1[0, i].Value = reader[0];              // id_row
+                dataGridView1[1, i].Value = N;                      // №
+                dataGridView1[2, i].Value = reader[1];              // subject_name
                 i++;
                 N++;
             }
