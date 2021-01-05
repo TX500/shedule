@@ -120,13 +120,7 @@ namespace Shedule_04
             massDelete(ids);
         }
 
-        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int row = dataGridView1.CurrentRow.Index;
-            ModalsForm.ModalLecturer.idItem = dataGridView1[0, row].Value.ToString();
-            ModalsForm.ModalLecturer.isNewItem = false;
-            modalLecturer.ShowDialog();
-        }
+       
 
         private void LecturerForm_Load(object sender, EventArgs e)
         {
@@ -136,6 +130,14 @@ namespace Shedule_04
         private void modalLecturer_FormClosed(object sender, FormClosedEventArgs e)
         {
             tableLoad();
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = dataGridView1.CurrentRow.Index;
+            ModalsForm.ModalLecturer.idItem = dataGridView1[0, row].Value.ToString();
+            ModalsForm.ModalLecturer.isNewItem = false;
+            modalLecturer.ShowDialog();
         }
     }
 }
