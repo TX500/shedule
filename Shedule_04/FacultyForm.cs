@@ -15,7 +15,8 @@ namespace Shedule_04
     {
 
         Form modalFaculty = new ModalsForm.ModalFaculty();
-
+        
+       
         public FacultyForm()
         {
             InitializeComponent();
@@ -96,6 +97,7 @@ namespace Shedule_04
         private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ModalsForm.ModalFaculty.isNewItem = true;
+            modalFaculty.FormClosed += new FormClosedEventHandler(modalFaculty_FormClosed);
             modalFaculty.ShowDialog();
         }
 
@@ -126,6 +128,11 @@ namespace Shedule_04
         }
 
         private void FacultyForm_Load(object sender, EventArgs e)
+        {
+            tableLoad();
+        }
+
+        private void modalFaculty_FormClosed(object sender, FormClosedEventArgs e)
         {
             tableLoad();
         }

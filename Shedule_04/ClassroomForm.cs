@@ -96,6 +96,8 @@ namespace Shedule_04
         private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ModalsForm.ModalClassroom.isNewItem = true;
+            modalClassroom.FormClosed += new FormClosedEventHandler(modalClassroom_FormClosed);
+
             modalClassroom.ShowDialog();
         }
 
@@ -126,6 +128,11 @@ namespace Shedule_04
         }
 
         private void ClassroomForm_Load(object sender, EventArgs e)
+        {
+            tableLoad();
+        }
+
+        private void modalClassroom_FormClosed(object sender, FormClosedEventArgs e)
         {
             tableLoad();
         }

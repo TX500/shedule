@@ -98,6 +98,8 @@ namespace Shedule_04
         private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ModalsForm.ModalGroup.isNewItem = true;
+            modalGroup.FormClosed += new FormClosedEventHandler(modalGroup_FormClosed);
+
             modalGroup.ShowDialog();
         }
 
@@ -128,6 +130,11 @@ namespace Shedule_04
         }
 
         private void GroupForm_Load(object sender, EventArgs e)
+        {
+            tableLoad();
+        }
+
+        private void modalGroup_FormClosed(object sender, FormClosedEventArgs e)
         {
             tableLoad();
         }
