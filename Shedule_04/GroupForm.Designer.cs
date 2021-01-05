@@ -124,6 +124,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 45);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(800, 405);
             this.dataGridView1.TabIndex = 2;
             // 
@@ -138,23 +139,33 @@
             // Column2
             // 
             this.Column2.HeaderText = "№";
+            this.Column2.MinimumWidth = 30;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.Width = 30;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Курс";
+            this.Column3.MinimumWidth = 50;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.Width = 50;
             // 
             // Column4
             // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.FillWeight = 30F;
             this.Column4.HeaderText = "Группа";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.FillWeight = 70F;
             this.Column5.HeaderText = "Факультет";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
