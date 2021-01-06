@@ -30,11 +30,10 @@ namespace Shedule_04.ModalsForm
 
         private void btn_add_Click(object sender, EventArgs e)
         {
+            //Проверяем
 
-        }
+            //Добавляем
 
-        private void btn_clear_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -101,7 +100,7 @@ namespace Shedule_04.ModalsForm
 
                 string getIds = @"SELECT shed_time, id_group
                                 FROM shedule_table JOIN groups on fk_group = id_group
-                                WHERE year = '"+year+"' AND semester = '"+semester+"' AND id_group = '"+idGroup+"'";
+                                WHERE year = '" + year + "' AND semester = '" + semester + "' AND id_group = '" + idGroup + "'";
                 SqlCommand table = new SqlCommand(getIds, connect);
                 connect.Open();
                 SqlDataReader reader = table.ExecuteReader();
@@ -110,14 +109,71 @@ namespace Shedule_04.ModalsForm
                     ids.Add(reader[0].ToString());
                 }
                 connect.Close();
-                
+
             }
             catch (SqlException ex)
             {
                 connect.Close();
                 MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
-         
+
+            //Заполняем таблицу с расписанием
+            try
+            {
+                string [] queryIds = ids.ToArray();
+                string id = "(";
+                
+                for (int j = 0; j < queryIds.Length; j++)
+                {
+                    if (j != queryIds.Length - 1)
+                    {
+                        id += "'" + ids[j] + "',";
+                    }
+                    else
+                    {
+                        id += "'" + ids[j] + "');";
+                    }
+                }
+
+
+                string querieAll = @"select day, task_number, subject_name, classroom_name, surname
+	                               from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
+	                               where id_shTime in "+id+" ";
+
+                SqlCommand table = new SqlCommand(querieAll, connect);
+
+                connect.Open();
+
+                SqlDataReader reader = table.ExecuteReader();
+
+                int i = 0;
+                int N = 1;
+                dataGridView1.Rows.Clear();
+
+                while (reader.Read())
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1[0, i].Value = reader[0];            
+                    dataGridView1[1, i].Value = reader[1];                    
+                    dataGridView1[3, i].Value = reader[2];              
+                    dataGridView1[4, i].Value = reader[4];              
+                    dataGridView1[5, i].Value = reader[3];            
+                    i++;
+                    N++;
+                }
+                reader.Close();
+                connect.Close();
+            }
+            catch (SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+            }
+
+
+
+
+
 
         }
 

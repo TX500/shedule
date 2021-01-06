@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btn_clear = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.combo_classroom = new System.Windows.Forms.ComboBox();
             this.combo_lecturer = new System.Windows.Forms.ComboBox();
@@ -47,6 +46,12 @@
             this.deleteLink = new System.Windows.Forms.LinkLabel();
             this.reloadLink = new System.Windows.Forms.LinkLabel();
             this.nameForm = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelUp.SuspendLayout();
@@ -54,7 +59,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btn_clear);
             this.panel1.Controls.Add(this.btn_add);
             this.panel1.Controls.Add(this.combo_classroom);
             this.panel1.Controls.Add(this.combo_lecturer);
@@ -73,19 +77,9 @@
             this.panel1.Size = new System.Drawing.Size(337, 546);
             this.panel1.TabIndex = 0;
             // 
-            // btn_clear
-            // 
-            this.btn_clear.Location = new System.Drawing.Point(181, 330);
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(75, 23);
-            this.btn_clear.TabIndex = 18;
-            this.btn_clear.Text = "Сбросить";
-            this.btn_clear.UseVisualStyleBackColor = true;
-            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
-            // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(66, 330);
+            this.btn_add.Location = new System.Drawing.Point(134, 320);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
             this.btn_add.TabIndex = 17;
@@ -165,7 +159,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(29, 209);
+            this.label8.Location = new System.Drawing.Point(26, 209);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(86, 13);
             this.label8.TabIndex = 7;
@@ -211,12 +205,23 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 45);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(593, 546);
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(593, 501);
             this.dataGridView1.TabIndex = 1;
             // 
             // panelUp
@@ -270,13 +275,67 @@
             this.nameForm.Text = "Расписание";
             this.nameForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // Column1
+            // 
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "День";
+            this.Column1.MinimumWidth = 50;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 90;
+            // 
+            // Column2
+            // 
+            this.Column2.Frozen = true;
+            this.Column2.HeaderText = "Пара";
+            this.Column2.MinimumWidth = 40;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 40;
+            // 
+            // Column3
+            // 
+            this.Column3.Frozen = true;
+            this.Column3.HeaderText = "Время";
+            this.Column3.MinimumWidth = 50;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 50;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.FillWeight = 60F;
+            this.Column4.HeaderText = "Занятие";
+            this.Column4.MinimumWidth = 100;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.FillWeight = 25F;
+            this.Column5.HeaderText = "Преподаватель";
+            this.Column5.MinimumWidth = 70;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.FillWeight = 15F;
+            this.Column6.HeaderText = "Аудитория";
+            this.Column6.MinimumWidth = 30;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // SheduleGroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(930, 546);
-            this.Controls.Add(this.panelUp);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.panelUp);
             this.Controls.Add(this.panel1);
             this.Name = "SheduleGroupForm";
             this.Text = "SheduleGroupForm";
@@ -300,7 +359,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btn_clear;
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.ComboBox combo_classroom;
         private System.Windows.Forms.ComboBox combo_lecturer;
@@ -311,5 +369,11 @@
         private System.Windows.Forms.LinkLabel deleteLink;
         private System.Windows.Forms.LinkLabel reloadLink;
         private System.Windows.Forms.Label nameForm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }

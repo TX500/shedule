@@ -77,9 +77,9 @@ INSERT INTO subject(subject_name) VALUES
 
 INSERT INTO shedule_time (day, task_number, fk_subject, fk_classroom, fk_lecturer) VALUES
 	('Понедельник', '1',  '1', '1', '1'),
-	('Понедельник', '1',  '2', '2', '2'),
-	('Понедельник', '1',  '3', '10', '3'),
-	('Понедельник', '1',  '4', '11', '4');
+	('Понедельник', '2',  '2', '2', '2'),
+	('Понедельник', '3',  '3', '10', '3'),
+	('Понедельник', '4',  '4', '11', '4');
 
 INSERT INTO shedule_table (fk_group, shed_time, semester, year) VALUES
 	('1', '1',  '1', '2020/2021'),
