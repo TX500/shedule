@@ -8,14 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Shedule_04
+namespace Shedule_04.ModalsForm
 {
     public partial class SheduleGroupForm : Form
     {
-        public String group;
-        public String semester;
-        public String year;
-        
+
+        public string group;
+        public string semester;
+        public string year;
+        public bool isNewItem;
         
         
         public SheduleGroupForm()
@@ -23,9 +24,19 @@ namespace Shedule_04
             InitializeComponent();
         }
 
-        // Получаем ИД группы
-        // Отбиравем все ИД квантов и засовываем их в ЛИСТ
-        // Заполняем таблицу их ИД в листе
+        private void SheduleGroupForm_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Shedule_04
+﻿namespace Shedule_04.ModalsForm
 {
     partial class SheduleGroupForm
     {
@@ -28,266 +28,225 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelUp = new System.Windows.Forms.Panel();
-            this.deleteLink = new System.Windows.Forms.LinkLabel();
-            this.reloadLink = new System.Windows.Forms.LinkLabel();
-            this.addLink = new System.Windows.Forms.LinkLabel();
-            this.nameForm = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panelUp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.combo_day = new System.Windows.Forms.ComboBox();
+            this.combo_time = new System.Windows.Forms.ComboBox();
+            this.combo_subject = new System.Windows.Forms.ComboBox();
+            this.combo_lecturer = new System.Windows.Forms.ComboBox();
+            this.combo_classroom = new System.Windows.Forms.ComboBox();
+            this.btn_add = new System.Windows.Forms.Button();
+            this.btn_clear = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panelUp
+            // panel1
             // 
-            this.panelUp.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panelUp.Controls.Add(this.deleteLink);
-            this.panelUp.Controls.Add(this.reloadLink);
-            this.panelUp.Controls.Add(this.addLink);
-            this.panelUp.Controls.Add(this.nameForm);
-            this.panelUp.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUp.Location = new System.Drawing.Point(0, 0);
-            this.panelUp.Name = "panelUp";
-            this.panelUp.Size = new System.Drawing.Size(1007, 45);
-            this.panelUp.TabIndex = 2;
-            // 
-            // deleteLink
-            // 
-            this.deleteLink.AutoSize = true;
-            this.deleteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.deleteLink.Location = new System.Drawing.Point(982, 16);
-            this.deleteLink.Name = "deleteLink";
-            this.deleteLink.Size = new System.Drawing.Size(63, 16);
-            this.deleteLink.TabIndex = 3;
-            this.deleteLink.TabStop = true;
-            this.deleteLink.Text = "Удалить";
-            this.deleteLink.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // reloadLink
-            // 
-            this.reloadLink.AutoSize = true;
-            this.reloadLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.reloadLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.reloadLink.Location = new System.Drawing.Point(904, 16);
-            this.reloadLink.Name = "reloadLink";
-            this.reloadLink.Size = new System.Drawing.Size(72, 16);
-            this.reloadLink.TabIndex = 2;
-            this.reloadLink.TabStop = true;
-            this.reloadLink.Text = "Обновить";
-            this.reloadLink.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // addLink
-            // 
-            this.addLink.AutoSize = true;
-            this.addLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.addLink.Location = new System.Drawing.Point(827, 16);
-            this.addLink.Name = "addLink";
-            this.addLink.Size = new System.Drawing.Size(71, 16);
-            this.addLink.TabIndex = 1;
-            this.addLink.TabStop = true;
-            this.addLink.Text = "Добавить";
-            this.addLink.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // nameForm
-            // 
-            this.nameForm.AutoSize = true;
-            this.nameForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameForm.Location = new System.Drawing.Point(13, 13);
-            this.nameForm.Name = "nameForm";
-            this.nameForm.Size = new System.Drawing.Size(176, 20);
-            this.nameForm.TabIndex = 0;
-            this.nameForm.Text = "Расписание группы ";
-            this.nameForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel1.Controls.Add(this.btn_clear);
+            this.panel1.Controls.Add(this.btn_add);
+            this.panel1.Controls.Add(this.combo_classroom);
+            this.panel1.Controls.Add(this.combo_lecturer);
+            this.panel1.Controls.Add(this.combo_subject);
+            this.panel1.Controls.Add(this.combo_time);
+            this.panel1.Controls.Add(this.combo_day);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(593, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(337, 546);
+            this.panel1.TabIndex = 0;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 45);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(638, 465);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // Column1
-            // 
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "id_row";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.Frozen = true;
-            this.Column2.HeaderText = "Номер пары";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.Frozen = true;
-            this.Column3.HeaderText = "Время занятия";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Занятие";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(159, 124);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
+            this.dataGridView1.Size = new System.Drawing.Size(593, 546);
+            this.dataGridView1.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(67, 127);
+            this.label1.Location = new System.Drawing.Point(102, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "time";
+            this.label1.Size = new System.Drawing.Size(101, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Добавить занятие";
             // 
-            // label2
+            // label5
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 170);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "subject";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 303);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Дисциплина";
             // 
-            // comboBox2
+            // label6
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(159, 167);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 6;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(25, 258);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Время";
             // 
-            // label3
+            // label7
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(67, 271);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "classroom";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 215);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "День недели";
             // 
-            // comboBox3
+            // label8
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(159, 268);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 10;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(28, 343);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Преподаватель";
             // 
-            // label4
+            // label9
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(67, 228);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "lecturer";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(28, 383);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(60, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Аудитория";
             // 
-            // comboBox4
+            // combo_day
             // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(159, 225);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 8;
+            this.combo_day.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_day.FormattingEnabled = true;
+            this.combo_day.Items.AddRange(new object[] {
+            "Понедельник",
+            "Вторник",
+            "Среда",
+            "Четверг",
+            "Пятница",
+            "Суббота",
+            "Воскресенье"});
+            this.combo_day.Location = new System.Drawing.Point(133, 212);
+            this.combo_day.Name = "combo_day";
+            this.combo_day.Size = new System.Drawing.Size(162, 21);
+            this.combo_day.TabIndex = 12;
             // 
-            // panel1
+            // combo_time
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Controls.Add(this.comboBox3);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.comboBox4);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(630, 45);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(377, 465);
-            this.panel1.TabIndex = 12;
+            this.combo_time.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_time.FormattingEnabled = true;
+            this.combo_time.Items.AddRange(new object[] {
+            "08:30-10:00",
+            "10:10-11:40",
+            "12:20-13:50",
+            "14:00-15:30",
+            "15:40-17:10",
+            "17:30-19:00"});
+            this.combo_time.Location = new System.Drawing.Point(133, 255);
+            this.combo_time.Name = "combo_time";
+            this.combo_time.Size = new System.Drawing.Size(162, 21);
+            this.combo_time.TabIndex = 13;
+            // 
+            // combo_subject
+            // 
+            this.combo_subject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_subject.FormattingEnabled = true;
+            this.combo_subject.Location = new System.Drawing.Point(133, 300);
+            this.combo_subject.Name = "combo_subject";
+            this.combo_subject.Size = new System.Drawing.Size(162, 21);
+            this.combo_subject.TabIndex = 14;
+            // 
+            // combo_lecturer
+            // 
+            this.combo_lecturer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_lecturer.FormattingEnabled = true;
+            this.combo_lecturer.Location = new System.Drawing.Point(133, 340);
+            this.combo_lecturer.Name = "combo_lecturer";
+            this.combo_lecturer.Size = new System.Drawing.Size(162, 21);
+            this.combo_lecturer.TabIndex = 15;
+            // 
+            // combo_classroom
+            // 
+            this.combo_classroom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_classroom.FormattingEnabled = true;
+            this.combo_classroom.Location = new System.Drawing.Point(133, 380);
+            this.combo_classroom.Name = "combo_classroom";
+            this.combo_classroom.Size = new System.Drawing.Size(162, 21);
+            this.combo_classroom.TabIndex = 16;
+            // 
+            // btn_add
+            // 
+            this.btn_add.Location = new System.Drawing.Point(77, 493);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(75, 23);
+            this.btn_add.TabIndex = 17;
+            this.btn_add.Text = "Добавить";
+            this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            // 
+            // btn_clear
+            // 
+            this.btn_clear.Location = new System.Drawing.Point(192, 493);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(75, 23);
+            this.btn_clear.TabIndex = 18;
+            this.btn_clear.Text = "Сбросить";
+            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
             // SheduleGroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 510);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(930, 546);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.panelUp);
+            this.Controls.Add(this.panel1);
             this.Name = "SheduleGroupForm";
             this.Text = "SheduleGroupForm";
-            this.panelUp.ResumeLayout(false);
-            this.panelUp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.SheduleGroupForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelUp;
-        private System.Windows.Forms.LinkLabel deleteLink;
-        private System.Windows.Forms.LinkLabel reloadLink;
-        private System.Windows.Forms.LinkLabel addLink;
-        private System.Windows.Forms.Label nameForm;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btn_clear;
+        private System.Windows.Forms.Button btn_add;
+        private System.Windows.Forms.ComboBox combo_classroom;
+        private System.Windows.Forms.ComboBox combo_lecturer;
+        private System.Windows.Forms.ComboBox combo_subject;
+        private System.Windows.Forms.ComboBox combo_time;
+        private System.Windows.Forms.ComboBox combo_day;
     }
 }

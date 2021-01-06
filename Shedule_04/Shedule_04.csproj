@@ -113,6 +113,12 @@
     <Compile Include="ModalsForm\ModalSubject.Designer.cs">
       <DependentUpon>ModalSubject.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModalsForm\SheduleGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModalsForm\SheduleGroupForm.Designer.cs">
+      <DependentUpon>SheduleGroupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SheduleForm.cs">
@@ -120,12 +126,6 @@
     </Compile>
     <Compile Include="SheduleForm.Designer.cs">
       <DependentUpon>SheduleForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ModalsForm\SheduleGroupForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ModalsForm\SheduleGroupForm.Designer.cs">
-      <DependentUpon>SheduleGroupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SubjectForm.cs">
       <SubType>Form</SubType>
@@ -166,6 +166,9 @@
     <EmbeddedResource Include="ModalsForm\ModalSubject.resx">
       <DependentUpon>ModalSubject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModalsForm\SheduleGroupForm.resx">
+      <DependentUpon>SheduleGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -177,9 +180,6 @@
     </Compile>
     <EmbeddedResource Include="SheduleForm.resx">
       <DependentUpon>SheduleForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ModalsForm\SheduleGroupForm.resx">
-      <DependentUpon>SheduleGroupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SubjectForm.resx">
       <DependentUpon>SubjectForm.cs</DependentUpon>
