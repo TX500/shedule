@@ -23,8 +23,8 @@ namespace Shedule_04
         private void tableLoad()
         {
             string querieAll = @"SELECT g.group_name, sh.semester, sh.year
-                               FROM shedule_table sh join  groups g on sh.fk_group=g.id_group
-                               group by g.group_name, sh.semester, sh.year;";
+                              FROM shedule_table sh join  groups g on sh.fk_group=g.id_group
+                              group by g.group_name, sh.semester, sh.year;";
 
             SqlCommand table = new SqlCommand(querieAll, connect);
 
@@ -76,6 +76,7 @@ namespace Shedule_04
                 MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
         }
+
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int row = dataGridView1.CurrentRow.Index;
@@ -84,7 +85,7 @@ namespace Shedule_04
             shg.year = dataGridView1[3, row].Value.ToString();
             shg.ShowDialog();
         }
-        
+
         private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             shg.isNewItem = true;
@@ -124,21 +125,21 @@ namespace Shedule_04
                     connect.Close();
 
                     // Проверка на дубль при добавлении
-                    
-                    string queryCheck = @"SELECT id_shTable FROM shedule_table WHERE fk_group = '"+ idGroup + "' AND semester = '"+combo_semester.SelectedItem.ToString()+"' AND year = '"+combo_year.SelectedItem.ToString()+"';";
+
+                    string queryCheck = @"SELECT id_shTable FROM shedule_table WHERE fk_group = '" + idGroup + "' AND semester = '" + combo_semester.SelectedItem.ToString() + "' AND year = '" + combo_year.SelectedItem.ToString() + "';";
                     SqlCommand tableCheck = new SqlCommand(queryCheck, connect);
                     connect.Open();
                     SqlDataReader reader2 = tableCheck.ExecuteReader();
                     string sh = "";
-                    while(reader2.Read())
+                    while (reader2.Read())
                     {
                         sh = reader2[0].ToString();
                     }
                     connect.Close();
-                    
+
 
                     // Добавляем расписание
-                    if(sh == "")
+                    if (sh == "")
                     {
                         string querieAdd = @"INSERT INTO shedule_table (fk_group, semester, year) values('" + idGroup + "', '" + combo_semester.SelectedItem.ToString() + "', '" + combo_year.SelectedItem.ToString() + "');";
                         SqlCommand insert = new SqlCommand(querieAdd, connect);
@@ -164,6 +165,62 @@ namespace Shedule_04
             {
                 MessageBox.Show("Заполните обязательные поля");
             }
+        }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(combo_group.SelectedIndex != -1 && combo_semester.SelectedIndex != -1 && combo_year.SelectedIndex != -1)
+                {
+                    string querieAll = @"SELECT g.group_name, sh.semester, sh.year
+                               FROM shedule_table sh join  groups g on sh.fk_group=g.id_group
+                               Where group_name = '" + combo_group.SelectedItem.ToString() + "'" +
+                               "AND semester = '" + combo_semester.SelectedItem.ToString() + "' " +
+                               "AND year = '" + combo_year.SelectedItem.ToString() + "'";
+
+                    SqlCommand table = new SqlCommand(querieAll, connect);
+
+                    connect.Open();
+
+                    SqlDataReader reader = table.ExecuteReader();
+
+                    int i = 0;
+                    int N = 1;
+                    dataGridView1.Rows.Clear();
+
+                    while (reader.Read())
+                    {
+                        dataGridView1.Rows.Add();
+                        dataGridView1[0, i].Value = N;
+                        dataGridView1[1, i].Value = reader[0];    //group        
+                        dataGridView1[2, i].Value = reader[1];    // semester
+                        dataGridView1[3, i].Value = reader[2];    // year
+                        i++;
+                        N++;
+                    }
+                    reader.Close();
+                    connect.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Заполните обязательные поля");
+                }
+            }
+            catch(SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+            }
+            
+        }
+
+        private void btn_reset_Click(object sender, EventArgs e)
+        {
+            tableLoad();
+            combo_group.SelectedIndex = -1;
+            combo_semester.SelectedIndex = -1;
+            combo_year.SelectedIndex = -1;
         }
     }
 }
