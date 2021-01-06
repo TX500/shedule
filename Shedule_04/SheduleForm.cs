@@ -86,13 +86,6 @@ namespace Shedule_04
             shg.ShowDialog();
         }
 
-        private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            shg.isNewItem = true;
-            shg.FormClosed += new FormClosedEventHandler(SheduleGroupForm_FormClosed);
-            shg.ShowDialog();
-        }
-
         private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             tableLoad();

@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelUp = new System.Windows.Forms.Panel();
             this.deleteLink = new System.Windows.Forms.LinkLabel();
             this.reloadLink = new System.Windows.Forms.LinkLabel();
-            this.addLink = new System.Windows.Forms.LinkLabel();
             this.nameForm = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,7 +59,6 @@
             this.panelUp.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panelUp.Controls.Add(this.deleteLink);
             this.panelUp.Controls.Add(this.reloadLink);
-            this.panelUp.Controls.Add(this.addLink);
             this.panelUp.Controls.Add(this.nameForm);
             this.panelUp.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUp.Location = new System.Drawing.Point(0, 0);
@@ -96,20 +94,6 @@
             this.reloadLink.VisitedLinkColor = System.Drawing.Color.Blue;
             this.reloadLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.reloadLink_LinkClicked);
             // 
-            // addLink
-            // 
-            this.addLink.AutoSize = true;
-            this.addLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.addLink.Location = new System.Drawing.Point(233, 16);
-            this.addLink.Name = "addLink";
-            this.addLink.Size = new System.Drawing.Size(71, 16);
-            this.addLink.TabIndex = 1;
-            this.addLink.TabStop = true;
-            this.addLink.Text = "Добавить";
-            this.addLink.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.addLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.addLink_LinkClicked);
-            // 
             // nameForm
             // 
             this.nameForm.AutoSize = true;
@@ -126,14 +110,14 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
@@ -349,7 +333,6 @@
         private System.Windows.Forms.Panel panelUp;
         private System.Windows.Forms.LinkLabel deleteLink;
         private System.Windows.Forms.LinkLabel reloadLink;
-        private System.Windows.Forms.LinkLabel addLink;
         private System.Windows.Forms.Label nameForm;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
