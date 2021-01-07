@@ -52,19 +52,29 @@ namespace Shedule_04
 
         private void massDelete(string[] ids)
         {
-            string id = "(";
-            for (int i = 0; i < ids.Length; i++)
-            {
-                if (i != ids.Length - 1)
-                {
-                    id += "'" + ids[i] + "',";
-                }
-                else
-                {
-                    id += "'" + ids[i] + "');";
-                }
-            }
-            string querieMassDelete = @"DELETE FROM subject WHERE id_subject in " + id;
+            
+            
+        }
+
+        private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ModalsForm.ModalSubject.isNewItem = true;
+            modalSubject.FormClosed += new FormClosedEventHandler(modalSubject_FormClosed);
+            modalSubject.ShowDialog();
+        }
+
+        private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tableLoad();
+        }
+
+        private void deleteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string ids;
+            int row = dataGridView1.SelectedRows[0].Index;
+            ids = dataGridView1[0, row].Value.ToString();
+
+            string querieMassDelete = @"DELETE FROM subject WHERE id_subject = " + ids +";";
 
             if (MessageBox.Show("Вы действительно хотите выбранные записи? Данная операция необратима.", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -91,31 +101,6 @@ namespace Shedule_04
                     }
                 }
             }
-        }
-
-        private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ModalsForm.ModalSubject.isNewItem = true;
-            modalSubject.FormClosed += new FormClosedEventHandler(modalSubject_FormClosed);
-            modalSubject.ShowDialog();
-        }
-
-        private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            tableLoad();
-        }
-
-        private void deleteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            // Получаем ИД записей и записываем их в массив ids
-            string[] ids = new string[dataGridView1.SelectedRows.Count];
-
-            for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
-            {
-                int row = dataGridView1.SelectedRows[i].Index;
-                ids[i] = dataGridView1[0, row].Value.ToString();
-            }
-            massDelete(ids);
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -93,6 +93,9 @@ namespace Shedule_04
 
         private void deleteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            string ids;
+            int row = dataGridView1.SelectedRows[0].Index;
+            ids = dataGridView1[0, row].Value.ToString();
             MessageBox.Show("Удаление не работает");
         }
 
