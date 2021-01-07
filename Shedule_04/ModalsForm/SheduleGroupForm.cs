@@ -11,7 +11,28 @@ namespace Shedule_04.ModalsForm
         public string group;
         public string semester;
         public string year;
-        //public bool isNewItem;
+        public string idGroup;
+
+        private string[] days = new string[]
+        {
+            "Понедельник",
+            "Вторник",
+            "Среда",
+            "Четверг",
+            "Пятница",
+            "Суббота",
+            "Воскресенье"
+        };
+
+        private string[] times = new string[]
+        {
+            "08:30-10:00",
+            "10:10-11:40",
+            "12:20-13:50",
+            "14:00-15:30",
+            "15:40-17:10",
+            "17:30-19:00"
+        };
 
         SqlConnection connect = new SqlConnection(DB.connectString);
 
@@ -22,23 +43,82 @@ namespace Shedule_04.ModalsForm
 
         private void SheduleGroupForm_Load(object sender, EventArgs e)
         {
-            // Заполняем комбобоксы
             comboLoad();
-            //Заполняем таблицу
             tableLoad();
+           
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
             //Проверяем
+            try
+            {
 
+            }
+            catch (SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+            }
             //Добавляем
+            try
+            {
+                string getSubject = @"SELECT id_subject From subject WHERE subject_name = '" + combo_subject.SelectedItem.ToString() + "';";
+                SqlCommand tableSubject = new SqlCommand(getSubject, connect);
+                connect.Open();
+                SqlDataReader reader1 = tableSubject.ExecuteReader();
+                reader1.Read();
+                string idSubject = reader1[0].ToString();
+                reader1.Close();
 
+                string getClassroom = @"SELECT id_classroom From classroom WHERE classroom_name = '" + combo_classroom.SelectedItem + "';";
+                SqlCommand tableClassroom = new SqlCommand(getClassroom, connect);
+                SqlDataReader reader2 = tableClassroom.ExecuteReader();
+                reader2.Read();
+                string idClassroom = reader2[0].ToString();
+                reader2.Close();
+
+                string getLecturer = @"SELECT id_lecturer From lecturer WHERE surname = '" + combo_lecturer.SelectedItem + "';";
+                SqlCommand tableLecturer = new SqlCommand(getLecturer, connect);
+                SqlDataReader reader3 = tableLecturer.ExecuteReader();
+                reader3.Read();
+                string idLecturer = reader3[0].ToString();
+                reader3.Close();
+
+                string addTime = @"Insert Into shedule_time (day, task_time, fk_subject, fk_classroom, fk_lecturer) VALUES
+                ('" + combo_day.SelectedItem + "', '" + combo_time.SelectedItem + "', '" + idSubject + "', '" + idClassroom + "', '" + idLecturer + "')";
+                SqlCommand insert = new SqlCommand(addTime, connect);
+                insert.ExecuteNonQuery();
+
+                string getIdSh_Time = @"Select TOP(1) id_shTime From shedule_time Order by id_shTime desc";
+                SqlCommand tableTime = new SqlCommand(getIdSh_Time, connect);
+                SqlDataReader reader4 = tableTime.ExecuteReader();
+                reader4.Read();
+                string idTime = reader4[0].ToString();
+                reader4.Close();
+
+                string addInTable = @"Insert Into shedule_table (fk_group, shed_time, semester, year) VALUES
+                ('" + idGroup + "', '" + idTime + "', '" + semester + "', '" + year + "')";
+                SqlCommand insert2 = new SqlCommand(addInTable, connect);
+                insert2.ExecuteNonQuery();
+
+
+                connect.Close();
+
+            }
+            catch (SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+            }
 
         }
 
         private void comboLoad()
         {
+            combo_day.DataSource = days;
+            combo_time.DataSource = times;
+
             try
             {
                 string getSubject = @"SELECT subject_name FROM subject;";
@@ -120,9 +200,9 @@ namespace Shedule_04.ModalsForm
             //Заполняем таблицу с расписанием
             try
             {
-                string [] queryIds = ids.ToArray();
+                string[] queryIds = ids.ToArray();
                 string id = "(";
-                
+
                 for (int j = 0; j < queryIds.Length; j++)
                 {
                     if (j != queryIds.Length - 1)
@@ -136,9 +216,9 @@ namespace Shedule_04.ModalsForm
                 }
 
 
-                string querieAll = @"select day, task_number, subject_name, classroom_name, surname
+                string querieAll = @"select day, task_time, subject_name, surname, classroom_name 
 	                               from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
-	                               where id_shTime in "+id+" ";
+	                               where id_shTime in " + id + " ";
 
                 SqlCommand table = new SqlCommand(querieAll, connect);
 
@@ -153,11 +233,11 @@ namespace Shedule_04.ModalsForm
                 while (reader.Read())
                 {
                     dataGridView1.Rows.Add();
-                    dataGridView1[0, i].Value = reader[0];            
-                    dataGridView1[1, i].Value = reader[1];                    
-                    dataGridView1[3, i].Value = reader[2];              
-                    dataGridView1[4, i].Value = reader[4];              
-                    dataGridView1[5, i].Value = reader[3];            
+                    dataGridView1[0, i].Value = reader[0];
+                    dataGridView1[1, i].Value = reader[1];
+                    dataGridView1[2, i].Value = reader[2];
+                    dataGridView1[3, i].Value = reader[3];
+                    dataGridView1[4, i].Value = reader[4];
                     i++;
                     N++;
                 }
@@ -169,12 +249,6 @@ namespace Shedule_04.ModalsForm
                 connect.Close();
                 MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
-
-
-
-
-
-
         }
 
         private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

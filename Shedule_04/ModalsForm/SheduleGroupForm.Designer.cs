@@ -47,7 +47,6 @@
             this.reloadLink = new System.Windows.Forms.LinkLabel();
             this.nameForm = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -118,13 +117,6 @@
             // 
             this.combo_time.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_time.FormattingEnabled = true;
-            this.combo_time.Items.AddRange(new object[] {
-            "08:30-10:00",
-            "10:10-11:40",
-            "12:20-13:50",
-            "14:00-15:30",
-            "15:40-17:10",
-            "17:30-19:00"});
             this.combo_time.Location = new System.Drawing.Point(134, 121);
             this.combo_time.Name = "combo_time";
             this.combo_time.Size = new System.Drawing.Size(162, 21);
@@ -134,14 +126,6 @@
             // 
             this.combo_day.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_day.FormattingEnabled = true;
-            this.combo_day.Items.AddRange(new object[] {
-            "Понедельник",
-            "Вторник",
-            "Среда",
-            "Четверг",
-            "Пятница",
-            "Суббота",
-            "Воскресенье"});
             this.combo_day.Location = new System.Drawing.Point(134, 78);
             this.combo_day.Name = "combo_day";
             this.combo_day.Size = new System.Drawing.Size(162, 21);
@@ -209,7 +193,6 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column2,
             this.Column3,
             this.Column4,
             this.Column5,
@@ -283,15 +266,6 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 90;
-            // 
-            // Column2
-            // 
-            this.Column2.Frozen = true;
-            this.Column2.HeaderText = "Пара";
-            this.Column2.MinimumWidth = 40;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 40;
             // 
             // Column3
             // 
@@ -370,7 +344,6 @@
         private System.Windows.Forms.LinkLabel reloadLink;
         private System.Windows.Forms.Label nameForm;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
