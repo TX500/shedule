@@ -36,9 +36,8 @@ CREATE TABLE lecturer (
 
 CREATE TABLE shedule_time(
 	id_shTime bigint NOT NULL IDENTITY,
-	--fk_group bigint FOREIGN KEY REFERENCES groups (id_group),
 	day varchar(255) NOT NULL,
-	task_number integer NOT NULL,
+	task_time varchar(255) NOT NULL,
 	fk_subject bigint FOREIGN KEY REFERENCES subject (id_subject),
 	fk_classroom bigint FOREIGN KEY REFERENCES classroom (id_classroom),
 	fk_lecturer bigint FOREIGN KEY REFERENCES lecturer (id_lecturer),

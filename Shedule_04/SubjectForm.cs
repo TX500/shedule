@@ -50,12 +50,6 @@ namespace Shedule_04
             connect.Close();
         }
 
-        private void massDelete(string[] ids)
-        {
-            
-            
-        }
-
         private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ModalsForm.ModalSubject.isNewItem = true;

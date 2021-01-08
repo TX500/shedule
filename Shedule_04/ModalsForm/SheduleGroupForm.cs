@@ -45,7 +45,6 @@ namespace Shedule_04.ModalsForm
         {
             comboLoad();
             tableLoad();
-           
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -102,14 +101,13 @@ namespace Shedule_04.ModalsForm
                 SqlCommand insert2 = new SqlCommand(addInTable, connect);
                 insert2.ExecuteNonQuery();
 
-
                 connect.Close();
-
+                tableLoad();
             }
             catch (SqlException ex)
             {
                 connect.Close();
-                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка555.");
             }
 
         }
@@ -214,41 +212,51 @@ namespace Shedule_04.ModalsForm
                         id += "'" + ids[j] + "');";
                     }
                 }
-
-
-                string querieAll = @"select day, task_time, subject_name, surname, classroom_name 
+                if(ids.Count != 0)
+                {
+                    string querieAll = @"select day, task_time, subject_name, surname, classroom_name 
 	                               from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
 	                               where id_shTime in " + id + " ";
 
-                SqlCommand table = new SqlCommand(querieAll, connect);
+                    SqlCommand table = new SqlCommand(querieAll, connect);
 
-                connect.Open();
+                    connect.Open();
 
-                SqlDataReader reader = table.ExecuteReader();
+                    SqlDataReader reader = table.ExecuteReader();
 
-                int i = 0;
-                int N = 1;
-                dataGridView1.Rows.Clear();
+                    int i = 0;
+                    int N = 1;
+                    dataGridView1.Rows.Clear();
 
-                while (reader.Read())
-                {
-                    dataGridView1.Rows.Add();
-                    dataGridView1[0, i].Value = reader[0];
-                    dataGridView1[1, i].Value = reader[1];
-                    dataGridView1[2, i].Value = reader[2];
-                    dataGridView1[3, i].Value = reader[3];
-                    dataGridView1[4, i].Value = reader[4];
-                    i++;
-                    N++;
+                    while (reader.Read())
+                    {
+                        dataGridView1.Rows.Add();
+                        dataGridView1[0, i].Value = reader[0];
+                        dataGridView1[1, i].Value = reader[1];
+                        dataGridView1[2, i].Value = reader[2];
+                        dataGridView1[3, i].Value = reader[3];
+                        dataGridView1[4, i].Value = reader[4];
+                        i++;
+                        N++;
+                    }
+                    reader.Close();
+                    connect.Close();
                 }
-                reader.Close();
-                connect.Close();
+                else
+                {
+                    dataGridView1.Rows.Clear();
+                }
+                
             }
             catch (SqlException ex)
             {
                 connect.Close();
                 MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
+            lab_IdGroup.Text = idGroup;
+            lab_group.Text = group;
+            lab_sem.Text = semester;
+            lab_year.Text = year;
         }
 
         private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -7,6 +7,10 @@ namespace Shedule_04
     public partial class SheduleForm : Form
     {
         ModalsForm.SheduleGroupForm shg = new ModalsForm.SheduleGroupForm();
+
+        private string group;
+        private string semester;
+        private string year;
         public SheduleForm()
         {
             InitializeComponent();
@@ -83,6 +87,24 @@ namespace Shedule_04
             shg.group = dataGridView1[1, row].Value.ToString();
             shg.semester = dataGridView1[2, row].Value.ToString();
             shg.year = dataGridView1[3, row].Value.ToString();
+
+            string getIdGroup = @"Select id_group From groups Where group_name = '" + shg.group + "'";
+            SqlCommand tableIdGroup = new SqlCommand(getIdGroup, connect);
+            connect.Open();
+            SqlDataReader reader = tableIdGroup.ExecuteReader();
+            reader.Read();
+            string idGroup = reader[0].ToString();
+            reader.Close();
+
+            string GetId = @"select id_shTable From shedule_table Where fk_group = '" + idGroup + "' " +
+                "AND semester = '" + shg.semester + "' AND year = '" + shg.year + "'  ";
+            SqlCommand tableGetId = new SqlCommand(GetId, connect);
+            SqlDataReader reader1 = tableGetId.ExecuteReader();
+            reader1.Read();
+            shg.idGroup = reader1[0].ToString();
+            reader1.Close();
+            connect.Close();
+            shg.FormClosed += new FormClosedEventHandler(SheduleGroupForm_FormClosed);
             shg.ShowDialog();
         }
 
@@ -95,8 +117,19 @@ namespace Shedule_04
         {
             string ids;
             int row = dataGridView1.SelectedRows[0].Index;
-            ids = dataGridView1[0, row].Value.ToString();
-            MessageBox.Show("Удаление не работает");
+            group = dataGridView1[1, row].Value.ToString();
+            semester = dataGridView1[2, row].Value.ToString();
+            year = dataGridView1[3, row].Value.ToString();
+
+
+
+
+
+
+            MessageBox.Show(group + semester + year);
+
+
+
         }
 
         private void SheduleGroupForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -118,6 +151,7 @@ namespace Shedule_04
                     SqlDataReader reader = table.ExecuteReader();
                     reader.Read();
                     idGroup = reader[0].ToString();
+                    reader.Close();
                     connect.Close();
 
                     // Проверка на дубль при добавлении
@@ -131,25 +165,25 @@ namespace Shedule_04
                     {
                         sh = reader2[0].ToString();
                     }
+                    reader2.Close();
                     connect.Close();
 
-
                     // Добавляем расписание
+                    // Если новое
                     if (sh == "")
                     {
-                        string querieAdd = @"INSERT INTO shedule_table (fk_group, semester, year) values('" + idGroup + "', '" + combo_semester.SelectedItem.ToString() + "', '" + combo_year.SelectedItem.ToString() + "');";
-                        SqlCommand insert = new SqlCommand(querieAdd, connect);
-                        connect.Open();
-                        insert.ExecuteNonQuery();
-                        connect.Close();
+                        shg.idGroup = idGroup;
+                        shg.group = combo_group.SelectedItem.ToString();
+                        shg.semester = combo_semester.SelectedItem.ToString();
+                        shg.year = combo_year.SelectedItem.ToString();
+                        shg.FormClosed += new FormClosedEventHandler(SheduleGroupForm_FormClosed);
+                        shg.ShowDialog();
                     }
                     else
                     {
-                        MessageBox.Show("Такое расписание уже создано.");
+                        shg.FormClosed += new FormClosedEventHandler(SheduleGroupForm_FormClosed);
+                        shg.ShowDialog();
                     }
-
-                    tableLoad();
-
                 }
                 catch (SqlException ex)
                 {
@@ -167,13 +201,14 @@ namespace Shedule_04
         {
             try
             {
-                if(combo_group.SelectedIndex != -1 && combo_semester.SelectedIndex != -1 && combo_year.SelectedIndex != -1)
+                if (combo_group.SelectedIndex != -1 && combo_semester.SelectedIndex != -1 && combo_year.SelectedIndex != -1)
                 {
                     string querieAll = @"SELECT g.group_name, sh.semester, sh.year
                                FROM shedule_table sh join  groups g on sh.fk_group=g.id_group
                                Where group_name = '" + combo_group.SelectedItem.ToString() + "'" +
                                "AND semester = '" + combo_semester.SelectedItem.ToString() + "' " +
-                               "AND year = '" + combo_year.SelectedItem.ToString() + "'";
+                               "AND year = '" + combo_year.SelectedItem.ToString() + "'" +
+                               "group by g.group_name, sh.semester, sh.year";
 
                     SqlCommand table = new SqlCommand(querieAll, connect);
 
@@ -203,12 +238,12 @@ namespace Shedule_04
                     MessageBox.Show("Заполните обязательные поля");
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 connect.Close();
                 MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
-            
+
         }
 
         private void btn_reset_Click(object sender, EventArgs e)
