@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -115,21 +116,81 @@ namespace Shedule_04
 
         private void deleteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string ids;
             int row = dataGridView1.SelectedRows[0].Index;
             group = dataGridView1[1, row].Value.ToString();
             semester = dataGridView1[2, row].Value.ToString();
             year = dataGridView1[3, row].Value.ToString();
 
+            string getIdGroup = @"Select id_group From groups Where group_name = '" + group + "'";
+            SqlCommand tableIdGroup = new SqlCommand(getIdGroup, connect);
+            connect.Open();
+            SqlDataReader reader = tableIdGroup.ExecuteReader();
+            reader.Read();
+            string idGroup = reader[0].ToString();
+            reader.Close();
+            connect.Close();
 
+            List<string> ids = new List<string>();
 
+            // Получаем все ИД для удаления
+            try
+            {
+                string getIds = @"SELECT id_shTime, shed_time, id_group
+                                FROM shedule_time JOIN shedule_table on shed_time = id_shTime Join groups on fk_group = id_group
+                                WHERE year = '" + year + "' AND semester = '" + semester + "' AND id_group = '" + idGroup + "'";
+                SqlCommand table = new SqlCommand(getIds, connect);
+                connect.Open();
+                SqlDataReader reader2 = table.ExecuteReader();
+                while (reader2.Read())
+                {
+                    ids.Add(reader2[0].ToString());
+                }
+                reader2.Close();
+                connect.Close();
 
+            }
+            catch (SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+            }
+            string[] queryIds = ids.ToArray();
+            string id = "(";
 
+            for (int j = 0; j < queryIds.Length; j++)
+            {
+                if (j != queryIds.Length - 1)
+                {
+                    id += "'" + ids[j] + "',";
+                }
+                else
+                {
+                    id += "'" + ids[j] + "');";
+                }
+            }
+            if (ids.Count != 0)
+            {
+                string delete = @"DELETE FROM shedule_time WHERE id_shTime in " + id + " ";
 
-            MessageBox.Show(group + semester + year);
+                if (MessageBox.Show("Вы действительно хотите удалить выбранные записи? Данная операция необратима.", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        SqlCommand table = new SqlCommand(delete, connect);
 
-
-
+                        connect.Open();
+                        SqlDataReader reader2 = table.ExecuteReader();
+                        reader2.Close();
+                        connect.Close();
+                        tableLoad();
+                    }
+                    catch (SqlException ex)
+                    {
+                        connect.Close();
+                        MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                    }
+                }
+            }
         }
 
         private void SheduleGroupForm_FormClosed(object sender, FormClosedEventArgs e)

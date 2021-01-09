@@ -212,9 +212,9 @@ namespace Shedule_04.ModalsForm
                         id += "'" + ids[j] + "');";
                     }
                 }
-                if(ids.Count != 0)
+                if (ids.Count != 0)
                 {
-                    string querieAll = @"select day, task_time, subject_name, surname, classroom_name 
+                    string querieAll = @"select id_shTime, day, task_time, subject_name, surname, classroom_name 
 	                               from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
 	                               where id_shTime in " + id + " ";
 
@@ -225,19 +225,18 @@ namespace Shedule_04.ModalsForm
                     SqlDataReader reader = table.ExecuteReader();
 
                     int i = 0;
-                    int N = 1;
                     dataGridView1.Rows.Clear();
 
                     while (reader.Read())
                     {
                         dataGridView1.Rows.Add();
-                        dataGridView1[0, i].Value = reader[0];
+                        dataGridView1[0, i].Value = reader[0]; //id_row
                         dataGridView1[1, i].Value = reader[1];
                         dataGridView1[2, i].Value = reader[2];
                         dataGridView1[3, i].Value = reader[3];
                         dataGridView1[4, i].Value = reader[4];
+                        dataGridView1[5, i].Value = reader[5];
                         i++;
-                        N++;
                     }
                     reader.Close();
                     connect.Close();
@@ -246,7 +245,7 @@ namespace Shedule_04.ModalsForm
                 {
                     dataGridView1.Rows.Clear();
                 }
-                
+
             }
             catch (SqlException ex)
             {
@@ -266,7 +265,30 @@ namespace Shedule_04.ModalsForm
 
         private void deleteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("Удаление не работает");
+            int row = dataGridView1.SelectedRows[0].Index;
+            string ids = dataGridView1[0, row].Value.ToString();
+
+            string delete = @"DELETE FROM shedule_time 
+                            WHERE id_shTime = '" + ids + "'";
+
+            if (MessageBox.Show("Вы действительно хотите удалить выбранные записи? Данная операция необратима.", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    SqlCommand table = new SqlCommand(delete, connect);
+
+                    connect.Open();
+                    SqlDataReader reader2 = table.ExecuteReader();
+                    reader2.Close();
+                    connect.Close();
+                    tableLoad();
+                }
+                catch (SqlException ex)
+                {
+                    connect.Close();
+                    MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                }
+            }
         }
     }
 }
