@@ -75,29 +75,15 @@ INSERT INTO subject(subject_name) VALUES
 
 
 
-INSERT INTO shedule_time (day, task_time, fk_subject, fk_classroom, fk_lecturer) VALUES
-	('Понедельник', '1',  '1', '1', '1'),
-	('Понедельник', '2',  '2', '2', '2'),
-	('Понедельник', '3',  '3', '10', '3'),
-	('Понедельник', '4',  '4', '11', '4');
+--INSERT INTO shedule_time (day, task_time, fk_subject, fk_classroom, fk_lecturer) VALUES
+--	('Понедельник', '1',  '1', '1', '1'),
+--	('Понедельник', '2',  '2', '2', '2'),
+--	('Понедельник', '3',  '3', '10', '3'),
+--	('Понедельник', '4',  '4', '11', '4');
 
-INSERT INTO shedule_table (fk_group, shed_time, semester, year) VALUES
-	('1', '1',  '1', '2020/2021'),
-	('1', '2',  '1', '2020/2021'),
-	('2', '3',  '1', '2020/2021'),
-	('2', '4',  '1', '2020/2021');
+--INSERT INTO shedule_table (fk_group, shed_time, semester, year) VALUES
+--	('1', '1',  '1', '2020/2021'),
+--	('1', '2',  '1', '2020/2021'),
+--	('2', '3',  '1', '2020/2021'),
+--	('2', '4',  '1', '2020/2021');
 
-
--- Добавление
-SELECT id_subject From subject WHERE subject_name = '"+combobox.SelectedItems.ToString()+"'
-SELECT id_classroom From classroom WHERE classroom_name = '"+combobox.SelectedItems.ToString()+"'
-SELECT id_lecturer From lecturer WHERE surname = '"+combobox.SelectedItems.ToString()+"'
-
-Insert Into shedule_time (day, task_time, fk_subject, fk_classroom, fk_lecturer) VALUES
-('Понедельник', '8.30-10.00', '"+fk_subjec+"', '"+fk_classroom+"', '"+fk_lecturer+"')
-
-Select * From shedule_time
-
-Select TOP(1) id_shTime From shedule_time Order by id_shTime desc
-
-Select * from shedule_table

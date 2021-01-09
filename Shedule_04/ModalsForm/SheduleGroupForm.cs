@@ -49,17 +49,6 @@ namespace Shedule_04.ModalsForm
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            //Проверяем
-            try
-            {
-
-            }
-            catch (SqlException ex)
-            {
-                connect.Close();
-                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
-            }
-            //Добавляем
             try
             {
                 string getSubject = @"SELECT id_subject From subject WHERE subject_name = '" + combo_subject.SelectedItem.ToString() + "';";
@@ -84,30 +73,129 @@ namespace Shedule_04.ModalsForm
                 string idLecturer = reader3[0].ToString();
                 reader3.Close();
 
-                string addTime = @"Insert Into shedule_time (day, task_time, fk_subject, fk_classroom, fk_lecturer) VALUES
-                ('" + combo_day.SelectedItem + "', '" + combo_time.SelectedItem + "', '" + idSubject + "', '" + idClassroom + "', '" + idLecturer + "')";
-                SqlCommand insert = new SqlCommand(addTime, connect);
-                insert.ExecuteNonQuery();
 
-                string getIdSh_Time = @"Select TOP(1) id_shTime From shedule_time Order by id_shTime desc";
-                SqlCommand tableTime = new SqlCommand(getIdSh_Time, connect);
-                SqlDataReader reader4 = tableTime.ExecuteReader();
-                reader4.Read();
-                string idTime = reader4[0].ToString();
-                reader4.Close();
+                // --------------------ПРОВЕРКИ------------------------------
 
-                string addInTable = @"Insert Into shedule_table (fk_group, shed_time, semester, year) VALUES
-                ('" + idGroup + "', '" + idTime + "', '" + semester + "', '" + year + "')";
-                SqlCommand insert2 = new SqlCommand(addInTable, connect);
-                insert2.ExecuteNonQuery();
 
+                // Проверка на дубль занятия для группы в одно и то же время
+                string checkTask = @"SELECT id_shTime
+                                   FROM shedule_time 
+                                   JOIN shedule_table ON shed_time = id_shTime 
+                                   JOIN groups ON fk_group = id_group
+                                   WHERE 
+                                   year = '" + year + "' " +
+                                   "AND semester = '" + semester + "' " +
+                                   "AND id_group = '" + idGroup + "' " +
+                                   "AND day = '" + combo_day.SelectedItem.ToString() + "' " +
+                                   "AND task_time = '" + combo_time.SelectedItem.ToString() + "'";
+
+                SqlCommand tableCheckTask = new SqlCommand(checkTask, connect);
+                SqlDataReader reader10 = tableCheckTask.ExecuteReader();
+                string idTask = null;
+                string idLect = null;
+                string gr = null;
+                string idClass = null;
+
+
+                while (reader10.Read())
+                {
+                    idTask = reader10[0].ToString();
+                }
+                reader10.Close();
+                if (idTask != null)
+                {
+                    connect.Close();
+                    MessageBox.Show("Добавление невозможно. В этот временной отрезок уже назначено занятие. Пожалуйста, выберите другой день или время.");
+                }
+                else
+                {
+                    // Проверка на дубль для преподавателя
+                    string checkLecturer = @"SELECT classroom_name, group_name
+                                           FROM shedule_time 
+                                           JOIN shedule_table on shed_time = id_shTime 
+                                           JOIN lecturer on fk_lecturer = id_lecturer 
+                                           JOIN classroom on fk_classroom = id_classroom
+                                           JOIN groups on fk_group = id_group
+                                           WHERE 
+                                           year = '" + year + "' " +
+                                           "AND semester = '" + semester + "' " +
+                                           "AND day = '" + combo_day.SelectedItem.ToString() + "' " +
+                                           "AND task_time = '" + combo_time.SelectedItem.ToString() + "' " +
+                                           "AND surname = '" + combo_lecturer.SelectedItem.ToString() + "'";
+
+                    SqlCommand tableCheckLecturer = new SqlCommand(checkLecturer, connect);
+                    SqlDataReader reader11 = tableCheckLecturer.ExecuteReader();
+                    while (reader11.Read())
+                    {
+                        idLect = reader11[0].ToString();
+                        gr = reader11[1].ToString();
+                    }
+                    reader11.Close();
+                    if (idLect != null)
+                    {
+                        connect.Close();
+                        MessageBox.Show("Добавление невозможно. У преподавателя уже назначено занятие в аудитории " + idLect + ", у группы " + gr);
+                    }
+                    else
+                    {
+                        // Проверка на дубль для аудитории
+                        string checkClassroom = @"SELECT group_name
+                                                FROM shedule_time 
+                                                JOIN shedule_table on shed_time = id_shTime 
+                                                JOIN classroom on fk_classroom = id_classroom 
+                                                JOIN groups on fk_group = id_group
+                                                WHERE 
+                                                year = '" + year + "' " +
+                                                "AND semester = '" + semester + "' " +
+                                                "AND classroom_name = '" + combo_classroom.SelectedItem.ToString() + "' " +
+                                                "AND day = '" + combo_day.SelectedItem.ToString() + "' " +
+                                                "AND task_time = '" + combo_time.SelectedItem.ToString() + "'";
+
+                        SqlCommand tableCheckClassroom = new SqlCommand(checkClassroom, connect);
+                        SqlDataReader reader12 = tableCheckClassroom.ExecuteReader();
+                        while (reader12.Read())
+                        {
+                            idClass = reader12[0].ToString();
+                        }
+                        reader12.Close();
+                        if (idClass != null)
+                        {
+                            connect.Close();
+                            MessageBox.Show("Добавление невозможно. Аудитория назначена для группы " + idClass);
+                        }
+                    }
+                }
+                
+
+                // Если все ок, то разрешаем добавить
+                if (idTask == null && idLect == null && idClass == null)
+                {
+                    string addTime = @"Insert Into shedule_time (day, task_time, fk_subject, fk_classroom, fk_lecturer) VALUES
+                                    ('" + combo_day.SelectedItem + "', " +
+                                    "'" + combo_time.SelectedItem + "', " +
+                                    "'" + idSubject + "', '" + idClassroom + "', '" + idLecturer + "')";
+                    SqlCommand insert = new SqlCommand(addTime, connect);
+                    insert.ExecuteNonQuery();
+
+                    string getIdSh_Time = @"Select TOP(1) id_shTime From shedule_time Order by id_shTime desc";
+                    SqlCommand tableTime = new SqlCommand(getIdSh_Time, connect);
+                    SqlDataReader reader4 = tableTime.ExecuteReader();
+                    reader4.Read();
+                    string idTime = reader4[0].ToString();
+                    reader4.Close();
+
+                    string addInTable = @"Insert Into shedule_table (fk_group, shed_time, semester, year) VALUES
+                                        ('" + idGroup + "', '" + idTime + "', '" + semester + "', '" + year + "')";
+                    SqlCommand insert2 = new SqlCommand(addInTable, connect);
+                    insert2.ExecuteNonQuery();
+                }
                 connect.Close();
                 tableLoad();
             }
             catch (SqlException ex)
             {
                 connect.Close();
-                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка555.");
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
 
         }

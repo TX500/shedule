@@ -46,7 +46,18 @@ CREATE TABLE shedule_time(
 CREATE TABLE shedule_table(
 	id_shTable bigint NOT NULL IDENTITY,
 	fk_group bigint FOREIGN KEY REFERENCES groups (id_group),
-	shed_time bigint FOREIGN KEY REFERENCES shedule_time (id_shTime),
+	shed_time bigint FOREIGN KEY REFERENCES shedule_time (id_shTime) ON DELETE CASCADE,
 	semester varchar(255) NOT NULL,
 	year varchar(255) NOT NULL,
 	primary key (id_shTable));
+
+
+--SELECT shed_time, id_group
+--FROM shedule_table JOIN groups on fk_group = id_group
+--WHERE year = '2020/2021' AND semester = 'Осенний' AND id_group = '1'
+
+--select id_shTime, shed_time, id_group
+--from shedule_time JOIN shedule_table on shed_time = id_shTime Join groups on fk_group = id_group
+--where year = '2020/2021' AND semester = 'Осенний' AND id_group = '1' 
+
+
