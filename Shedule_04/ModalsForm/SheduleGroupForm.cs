@@ -254,20 +254,6 @@ namespace Shedule_04.ModalsForm
 
         private void tableLoad()
         {
-            //Строим таблицу с расписанием
-            //dataGridView1.Rows.Clear();
-            //int k = 0;
-            //for (int i = 0; i < 49; i++)
-            //{
-            //    dataGridView1.Rows.Add();
-            //}
-            //for (int i = -7; i < 42; i += 7)
-            //{
-
-            //    dataGridView1[3, i + 7].Value = days[k];
-            //    k++;
-            //    Console.WriteLine(i + 7);
-            //}
             
             // Получаем все ИД квантов расписания
             List<string> ids = new List<string>();
@@ -338,10 +324,11 @@ namespace Shedule_04.ModalsForm
 
                         dataGridView1.Rows.Add();
                         dataGridView1[0, i].Value = reader[0]; //id_row
-                        // Замена индекса дня на текст
+                        
+                        // Сортировка дня недели и отображение
                         int nameOfDay = Int32.Parse( reader[1].ToString());
-                       
                         dataGridView1[1, i].Value = days[nameOfDay];
+                       
                         dataGridView1[2, i].Value = reader[2];
                         dataGridView1[3, i].Value = reader[3];
                         dataGridView1[4, i].Value = reader[4];
@@ -351,9 +338,15 @@ namespace Shedule_04.ModalsForm
                     reader.Close();
                     connect.Close();
 
-
-
-
+                    int j = dataGridView1.Rows.Count-1;
+                    while (j != 0)
+                    {
+                        if (j != 0 && dataGridView1[1, j].Value.ToString() == dataGridView1[1, j - 1].Value.ToString())
+                        {
+                            dataGridView1[1, j].Value = "";
+                        }
+                        j--;
+                    }
                 }
                 else
                 {
@@ -366,10 +359,6 @@ namespace Shedule_04.ModalsForm
                 connect.Close();
                 MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
-            lab_IdGroup.Text = idGroup;
-            lab_group.Text = group;
-            lab_sem.Text = semester;
-            lab_year.Text = year;
         }
        
         private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
