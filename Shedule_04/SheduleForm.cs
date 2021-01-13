@@ -86,6 +86,7 @@ namespace Shedule_04
         {
             int row = dataGridView1.CurrentRow.Index;
             shg.group = dataGridView1[1, row].Value.ToString();
+            
             shg.semester = dataGridView1[2, row].Value.ToString();
             shg.year = dataGridView1[3, row].Value.ToString();
 
@@ -95,15 +96,16 @@ namespace Shedule_04
             SqlDataReader reader = tableIdGroup.ExecuteReader();
             reader.Read();
             string idGroup = reader[0].ToString();
+            shg.idGroup = idGroup;
             reader.Close();
 
-            string GetId = @"select id_shTable From shedule_table Where fk_group = '" + idGroup + "' " +
-                "AND semester = '" + shg.semester + "' AND year = '" + shg.year + "'  ";
-            SqlCommand tableGetId = new SqlCommand(GetId, connect);
-            SqlDataReader reader1 = tableGetId.ExecuteReader();
-            reader1.Read();
-            shg.idGroup = reader1[0].ToString();
-            reader1.Close();
+            //string GetId = @"select id_shTable From shedule_table Where fk_group = '" + idGroup + "' " +
+            //    "AND semester = '" + shg.semester + "' AND year = '" + shg.year + "'  ";
+            //SqlCommand tableGetId = new SqlCommand(GetId, connect);
+            //SqlDataReader reader1 = tableGetId.ExecuteReader();
+            //reader1.Read();
+            //shg.idGroup = reader1[0].ToString();
+            //reader1.Close();
             connect.Close();
             shg.FormClosed += new FormClosedEventHandler(SheduleGroupForm_FormClosed);
             shg.ShowDialog();
@@ -242,6 +244,7 @@ namespace Shedule_04
                     }
                     else
                     {
+                        //shg.idGroup = idGroup;
                         shg.FormClosed += new FormClosedEventHandler(SheduleGroupForm_FormClosed);
                         shg.ShowDialog();
                     }

@@ -86,7 +86,7 @@ namespace Shedule_04.ModalsForm
                                    year = '" + year + "' " +
                                    "AND semester = '" + semester + "' " +
                                    "AND id_group = '" + idGroup + "' " +
-                                   "AND day = '" + combo_day.SelectedItem.ToString() + "' " +
+                                   "AND day = '" + combo_day.SelectedIndex.ToString() + "' " +
                                    "AND task_time = '" + combo_time.SelectedItem.ToString() + "'";
 
                 SqlCommand tableCheckTask = new SqlCommand(checkTask, connect);
@@ -119,7 +119,7 @@ namespace Shedule_04.ModalsForm
                                            WHERE 
                                            year = '" + year + "' " +
                                            "AND semester = '" + semester + "' " +
-                                           "AND day = '" + combo_day.SelectedItem.ToString() + "' " +
+                                           "AND day = '" + combo_day.SelectedIndex.ToString() + "' " +
                                            "AND task_time = '" + combo_time.SelectedItem.ToString() + "' " +
                                            "AND surname = '" + combo_lecturer.SelectedItem.ToString() + "'";
 
@@ -148,7 +148,7 @@ namespace Shedule_04.ModalsForm
                                                 year = '" + year + "' " +
                                                 "AND semester = '" + semester + "' " +
                                                 "AND classroom_name = '" + combo_classroom.SelectedItem.ToString() + "' " +
-                                                "AND day = '" + combo_day.SelectedItem.ToString() + "' " +
+                                                "AND day = '" + combo_day.SelectedIndex.ToString() + "' " +
                                                 "AND task_time = '" + combo_time.SelectedItem.ToString() + "'";
 
                         SqlCommand tableCheckClassroom = new SqlCommand(checkClassroom, connect);
@@ -165,13 +165,15 @@ namespace Shedule_04.ModalsForm
                         }
                     }
                 }
-                
 
+                
                 // Если все ок, то разрешаем добавить
                 if (idTask == null && idLect == null && idClass == null)
                 {
+                    
+                   
                     string addTime = @"Insert Into shedule_time (day, task_time, fk_subject, fk_classroom, fk_lecturer) VALUES
-                                    ('" + combo_day.SelectedItem + "', " +
+                                    ('" + combo_day.SelectedIndex + "', " +
                                     "'" + combo_time.SelectedItem + "', " +
                                     "'" + idSubject + "', '" + idClassroom + "', '" + idLecturer + "')";
                     SqlCommand insert = new SqlCommand(addTime, connect);
@@ -197,11 +199,11 @@ namespace Shedule_04.ModalsForm
                 connect.Close();
                 MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
-
         }
 
         private void comboLoad()
         {
+                       
             combo_day.DataSource = days;
             combo_time.DataSource = times;
 
@@ -252,6 +254,21 @@ namespace Shedule_04.ModalsForm
 
         private void tableLoad()
         {
+            //Строим таблицу с расписанием
+            //dataGridView1.Rows.Clear();
+            //int k = 0;
+            //for (int i = 0; i < 49; i++)
+            //{
+            //    dataGridView1.Rows.Add();
+            //}
+            //for (int i = -7; i < 42; i += 7)
+            //{
+
+            //    dataGridView1[3, i + 7].Value = days[k];
+            //    k++;
+            //    Console.WriteLine(i + 7);
+            //}
+            
             // Получаем все ИД квантов расписания
             List<string> ids = new List<string>();
             try
@@ -297,14 +314,14 @@ namespace Shedule_04.ModalsForm
                     }
                     else
                     {
-                        id += "'" + ids[j] + "');";
+                        id += "'" + ids[j] + "')";
                     }
                 }
                 if (ids.Count != 0)
                 {
                     string querieAll = @"select id_shTime, day, task_time, subject_name, surname, classroom_name 
 	                               from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
-	                               where id_shTime in " + id + " ";
+	                               where id_shTime in " + id + " order by day, task_time ";
 
                     SqlCommand table = new SqlCommand(querieAll, connect);
 
@@ -315,11 +332,16 @@ namespace Shedule_04.ModalsForm
                     int i = 0;
                     dataGridView1.Rows.Clear();
 
+                    
                     while (reader.Read())
                     {
+
                         dataGridView1.Rows.Add();
                         dataGridView1[0, i].Value = reader[0]; //id_row
-                        dataGridView1[1, i].Value = reader[1];
+                        // Замена индекса дня на текст
+                        int nameOfDay = Int32.Parse( reader[1].ToString());
+                       
+                        dataGridView1[1, i].Value = days[nameOfDay];
                         dataGridView1[2, i].Value = reader[2];
                         dataGridView1[3, i].Value = reader[3];
                         dataGridView1[4, i].Value = reader[4];
@@ -328,6 +350,10 @@ namespace Shedule_04.ModalsForm
                     }
                     reader.Close();
                     connect.Close();
+
+
+
+
                 }
                 else
                 {
@@ -345,7 +371,7 @@ namespace Shedule_04.ModalsForm
             lab_sem.Text = semester;
             lab_year.Text = year;
         }
-
+       
         private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             tableLoad();

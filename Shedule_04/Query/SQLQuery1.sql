@@ -19,18 +19,29 @@
 	--from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
 	--where id_shTime in ('1','2') AND day = 'Понедельник'
 
+--select * from shedule_time
+--select * from shedule_table
+
+---- id=8
+--select id_shTime
+--from shedule_time JOIN shedule_table on shed_time = id_shTime JOIN groups ON fk_group = id_group
+--where year = '2020/2021' AND semester = 'Осенний' AND day = 'Понедельник' AND task_time = '08:30-10:00' AND id_group ='1'
+
+--select group_name
+--from shedule_time JOIN shedule_table on shed_time = id_shTime Join classroom on fk_classroom = id_classroom JOIN groups on fk_group = id_group
+--where year = '2020/2021' AND semester = 'Осенний' AND classroom_name = 'А-101' AND day = 'Понедельник' AND task_time = '08:30-10:00'
+
+--select classroom_name, group_name
+--from shedule_time JOIN shedule_table on shed_time = id_shTime Join lecturer on fk_lecturer = id_lecturer Join classroom on fk_classroom = id_classroom JOIN groups on fk_group = id_group
+--where year = '2020/2021' AND semester = 'Осенний' AND day = 'Понедельник' AND task_time = '08:30-10:00' AND surname = 'Александрова'
+
+select day, task_time, subject_name, surname, classroom_name,id_shTime
+from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
+--where id_shTime = '1'
+order by day, task_time
+
+
+
 select * from shedule_time
-select * from shedule_table
 
--- id=8
-select id_shTime
-from shedule_time JOIN shedule_table on shed_time = id_shTime Join classroom on fk_classroom = id_classroom
-where year = '2020/2021' AND semester = 'Осенний' AND classroom_name = 'А-101' AND day = 'Понедельник' AND task_time = '08:30-10:00'
-
-select group_name
-from shedule_time JOIN shedule_table on shed_time = id_shTime Join classroom on fk_classroom = id_classroom JOIN groups on fk_group = id_group
-where year = '2020/2021' AND semester = 'Осенний' AND classroom_name = 'А-101' AND day = 'Понедельник' AND task_time = '08:30-10:00'
-
-select classroom_name, group_name
-from shedule_time JOIN shedule_table on shed_time = id_shTime Join lecturer on fk_lecturer = id_lecturer Join classroom on fk_classroom = id_classroom JOIN groups on fk_group = id_group
-where year = '2020/2021' AND semester = 'Осенний' AND day = 'Понедельник' AND task_time = '08:30-10:00' AND surname = 'Александрова'
+select group_name from groups where id_group = '8'
