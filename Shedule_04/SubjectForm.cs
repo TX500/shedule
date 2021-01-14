@@ -19,6 +19,8 @@ namespace Shedule_04
         public SubjectForm()
         {
             InitializeComponent();
+            modalSubject.FormClosed += new FormClosedEventHandler(modalSubject_FormClosed);
+
         }
 
         SqlConnection connect = new SqlConnection(DB.connectString);
@@ -61,7 +63,6 @@ namespace Shedule_04
         private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ModalsForm.ModalSubject.isNewItem = true;
-            modalSubject.FormClosed += new FormClosedEventHandler(modalSubject_FormClosed);
             modalSubject.ShowDialog();
         }
 

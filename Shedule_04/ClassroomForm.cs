@@ -12,6 +12,7 @@ namespace Shedule_04
         public ClassroomForm()
         {
             InitializeComponent();
+            modalClassroom.FormClosed += new FormClosedEventHandler(modalClassroom_FormClosed);
         }
 
         SqlConnection connect = new SqlConnection(DB.connectString);
@@ -55,7 +56,6 @@ namespace Shedule_04
         private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ModalsForm.ModalClassroom.isNewItem = true;
-            modalClassroom.FormClosed += new FormClosedEventHandler(modalClassroom_FormClosed);
             modalClassroom.ShowDialog();
         }
 

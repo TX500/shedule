@@ -11,6 +11,7 @@ namespace Shedule_04
         public GroupForm()
         {
             InitializeComponent();
+            modalGroup.FormClosed += new FormClosedEventHandler(modalGroup_FormClosed);
         }
 
         SqlConnection connect = new SqlConnection(DB.connectString);
@@ -56,7 +57,6 @@ namespace Shedule_04
         private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ModalsForm.ModalGroup.isNewItem = true;
-            modalGroup.FormClosed += new FormClosedEventHandler(modalGroup_FormClosed);
             modalGroup.ShowDialog();
         }
 
