@@ -156,5 +156,10 @@ namespace Shedule_04
         }
 
         #endregion
+
+        private void exitMenuMainForm_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
