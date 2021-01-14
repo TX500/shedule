@@ -133,7 +133,7 @@ namespace Shedule_04.ModalsForm
             }
 
             //Заполняем таблицу с расписанием
-            if(ids.Count != 0)
+            if (ids.Count != 0)
             {
                 try
                 {
@@ -197,9 +197,7 @@ namespace Shedule_04.ModalsForm
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(combo_subject.SelectedIndex.ToString());
-            
-            if(combo_subject.SelectedIndex == -1 || combo_lecturer.SelectedIndex == -1 || combo_classroom.SelectedIndex == -1)
+            if (combo_subject.SelectedIndex == -1 || combo_lecturer.SelectedIndex == -1 || combo_classroom.SelectedIndex == -1)
             {
                 MessageBox.Show("Заполните обязательные поля");
             }
@@ -358,7 +356,7 @@ namespace Shedule_04.ModalsForm
         {
             combo_day.DataSource = days;
             combo_time.DataSource = times;
-            
+
             try
             {
                 string getSubject = @"SELECT subject_name FROM subject;";
@@ -449,7 +447,7 @@ namespace Shedule_04.ModalsForm
             excelapp.Columns[3].ColumnWidth = 50;
 
             excelapp.Cells[1, 3].WrapText = true;
-            excelapp.Cells[1, 3] = "Расписание "+year + " "+ semester+" семестр";
+            excelapp.Cells[1, 3] = "Расписание " + year + " " + semester + " семестр";
             excelapp.Cells[1, 3].Font.Bold = true;
             excelapp.Cells[1, 3].Font.Size = 18;
 
