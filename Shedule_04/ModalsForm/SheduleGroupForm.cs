@@ -92,12 +92,12 @@ namespace Shedule_04.ModalsForm
                 {
                     t = 0;
                     s++;
-                    dataGridView1[6, i].Value = s.ToString();
+                    dataGridView1[4, i].Value = s.ToString();
                     t++;
                 }
                 else
                 {
-                    dataGridView1[6, i].Value = s.ToString();
+                    dataGridView1[4, i].Value = s.ToString();
                     t++;
                 }
             }
@@ -172,7 +172,7 @@ namespace Shedule_04.ModalsForm
 
                         for (int jj = 1; jj < 43; jj += 6)
                         {
-                            if (reader[1].ToString() == dataGridView1[6, jj].Value.ToString())
+                            if (reader[1].ToString() == dataGridView1[4, jj].Value.ToString())
                             {
                                 for (int kk = jj; kk < (jj += 6); kk++)
                                 {
@@ -180,9 +180,9 @@ namespace Shedule_04.ModalsForm
                                     if (reader[2].ToString() == dataGridView1[2, kk].Value.ToString())
                                     {
                                         dataGridView1[0, kk].Value = reader[0];
-                                        dataGridView1[3, kk].Value = reader[3];
-                                        dataGridView1[4, kk].Value = reader[4];
-                                        dataGridView1[5, kk].Value = reader[5];
+                                        dataGridView1[3, kk].Value = reader[3] + ", " + reader[5] + ", " + reader[4]; ;
+                                        //dataGridView1[4, kk].Value = reader[4];
+                                        //dataGridView1[5, kk].Value = reader[5];
                                         break;
                                     }
                                 }
@@ -486,9 +486,9 @@ namespace Shedule_04.ModalsForm
                         dataGridView1[1, i].Value = days[nameOfDay];
 
                         dataGridView1[2, i].Value = reader[2];
-                        dataGridView1[3, i].Value = reader[3];
-                        dataGridView1[4, i].Value = reader[4];
-                        dataGridView1[5, i].Value = reader[5];
+                        dataGridView1[3, i].Value = (reader[3] + ", " + reader[4] + ", " + reader[5]);
+                       // dataGridView1[4, i].Value = reader[4];
+                       // dataGridView1[5, i].Value = reader[5];
                         i++;
                     }
                     reader.Close();
@@ -557,21 +557,34 @@ namespace Shedule_04.ModalsForm
         private void printLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Excel.Application excelapp = new Excel.Application();
+            Object missing = Type.Missing;
             Excel.Workbook workbook = excelapp.Workbooks.Add(Type.Missing);
 
-            excelapp.Columns[2].ColumnWidth = 30;
+            excelapp.Columns[1].ColumnWidth = 13;
+            excelapp.Columns[2].ColumnWidth = 11;
+            excelapp.Columns[3].ColumnWidth = 50;
+
+            excelapp.Cells[1, 3].WrapText = true;
+            excelapp.Cells[1, 3] = "Расписание "+year + " "+ semester+" семестр";
+            excelapp.Cells[1, 3].Font.Bold = true;
+            excelapp.Cells[1, 3].Font.Size = 18;
+
+            excelapp.Cells[2, 3].WrapText = true;
+            excelapp.Cells[2, 3] = group;
+            excelapp.Cells[2, 3].Font.Bold = true;
+            excelapp.Cells[2, 3].Font.Size = 16;
+            excelapp.Cells[2, 3].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
             for (int i = 1; i < dataGridView1.Rows.Count; i++)
             {
-                excelapp.Cells[i + 2, 1] = i;
-                excelapp.Cells[i + 2, 2] = dataGridView1[1, i - 1].Value;
-                excelapp.Cells[i + 2, 3] = dataGridView1[2, i - 1].Value;
-                excelapp.Cells[i + 2, 4] = dataGridView1[3, i - 1].Value;
-                //excelapp.Cells[i + 2, 5] = dataGridView1[4, i - 1].Value;
-                //excelapp.Cells[i + 2, 6] = dataGridView1[5, i - 1].Value;
-                //excelapp.Cells[i + 2, 7] = dataGridView1[6, i - 1].Value;
-                //excelapp.Cells[i + 2, 8] = dataGridView1[7, i - 1].Value;
+                excelapp.Cells[i, 3].WrapText = true;
+
+                excelapp.Cells[i + 2, 1] = dataGridView1[1, i].Value;
+                excelapp.Cells[i + 2, 2] = dataGridView1[2, i].Value;
+                excelapp.Cells[i + 2, 3] = dataGridView1[3, i].Value;
             }
             excelapp.Visible = true;
+            
         }
     }
 

@@ -42,18 +42,16 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panelUp = new System.Windows.Forms.Panel();
+            this.printLink = new System.Windows.Forms.LinkLabel();
+            this.deleteLink = new System.Windows.Forms.LinkLabel();
+            this.reloadLink = new System.Windows.Forms.LinkLabel();
+            this.nameForm = new System.Windows.Forms.Label();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelUp = new System.Windows.Forms.Panel();
-            this.deleteLink = new System.Windows.Forms.LinkLabel();
-            this.reloadLink = new System.Windows.Forms.LinkLabel();
-            this.nameForm = new System.Windows.Forms.Label();
-            this.printLink = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelUp.SuspendLayout();
@@ -199,8 +197,6 @@
             this.Column1,
             this.Column3,
             this.Column4,
-            this.Column5,
-            this.Column6,
             this.Column7});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 45);
@@ -211,73 +207,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(593, 501);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // Column2
-            // 
-            this.Column2.Frozen = true;
-            this.Column2.HeaderText = "id_row";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "День";
-            this.Column1.MinimumWidth = 80;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.Width = 80;
-            // 
-            // Column3
-            // 
-            this.Column3.Frozen = true;
-            this.Column3.HeaderText = "Время";
-            this.Column3.MinimumWidth = 70;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column3.Width = 70;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.FillWeight = 60F;
-            this.Column4.HeaderText = "Занятие";
-            this.Column4.MinimumWidth = 100;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column5.FillWeight = 25F;
-            this.Column5.HeaderText = "Преподаватель";
-            this.Column5.MinimumWidth = 70;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column5.Width = 110;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column6.FillWeight = 15F;
-            this.Column6.HeaderText = "Аудитория";
-            this.Column6.MinimumWidth = 30;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column6.Width = 66;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "day";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Visible = false;
             // 
             // panelUp
             // 
@@ -291,6 +220,20 @@
             this.panelUp.Name = "panelUp";
             this.panelUp.Size = new System.Drawing.Size(593, 45);
             this.panelUp.TabIndex = 2;
+            // 
+            // printLink
+            // 
+            this.printLink.AutoSize = true;
+            this.printLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.printLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.printLink.Location = new System.Drawing.Point(483, 17);
+            this.printLink.Name = "printLink";
+            this.printLink.Size = new System.Drawing.Size(61, 16);
+            this.printLink.TabIndex = 4;
+            this.printLink.TabStop = true;
+            this.printLink.Text = "В Excele";
+            this.printLink.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.printLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.printLink_LinkClicked);
             // 
             // deleteLink
             // 
@@ -331,19 +274,50 @@
             this.nameForm.Text = "Расписание";
             this.nameForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // printLink
+            // Column2
             // 
-            this.printLink.AutoSize = true;
-            this.printLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.printLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.printLink.Location = new System.Drawing.Point(483, 17);
-            this.printLink.Name = "printLink";
-            this.printLink.Size = new System.Drawing.Size(61, 16);
-            this.printLink.TabIndex = 4;
-            this.printLink.TabStop = true;
-            this.printLink.Text = "В Excele";
-            this.printLink.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.printLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.printLink_LinkClicked);
+            this.Column2.Frozen = true;
+            this.Column2.HeaderText = "id_row";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "День";
+            this.Column1.MinimumWidth = 80;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.Width = 80;
+            // 
+            // Column3
+            // 
+            this.Column3.Frozen = true;
+            this.Column3.HeaderText = "Время";
+            this.Column3.MinimumWidth = 70;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.Width = 70;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.FillWeight = 60F;
+            this.Column4.HeaderText = "Занятие";
+            this.Column4.MinimumWidth = 100;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "day";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
             // 
             // SheduleGroupForm
             // 
@@ -385,13 +359,11 @@
         private System.Windows.Forms.LinkLabel deleteLink;
         private System.Windows.Forms.LinkLabel reloadLink;
         private System.Windows.Forms.Label nameForm;
+        private System.Windows.Forms.LinkLabel printLink;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.LinkLabel printLink;
     }
 }
