@@ -46,7 +46,6 @@ namespace Shedule_04.ModalsForm
         private void SheduleGroupForm_Load(object sender, EventArgs e)
         {
             comboLoad();
-            //tableLoad();
             tableLoad2();
         }
 
@@ -87,7 +86,6 @@ namespace Shedule_04.ModalsForm
             int s = 0, t = 0;
             for (int i = 1; i < 43; i++)
             {
-                //dataGridView1[3, i].Value = s.ToString();
                 if (t > 5)
                 {
                     t = 0;
@@ -127,7 +125,6 @@ namespace Shedule_04.ModalsForm
                     ids.Add(reader[0].ToString());
                 }
                 connect.Close();
-
             }
             catch (SqlException ex)
             {
@@ -155,7 +152,6 @@ namespace Shedule_04.ModalsForm
                         }
                     }
 
-
                     string querieAll = @"select id_shTime, day, task_time, subject_name, surname, classroom_name 
 	                               from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
 	                               where id_shTime in " + id + " order by day, task_time ";
@@ -181,8 +177,6 @@ namespace Shedule_04.ModalsForm
                                     {
                                         dataGridView1[0, kk].Value = reader[0];
                                         dataGridView1[3, kk].Value = reader[3] + ", " + reader[5] + ", " + reader[4]; ;
-                                        //dataGridView1[4, kk].Value = reader[4];
-                                        //dataGridView1[5, kk].Value = reader[5];
                                         break;
                                     }
                                 }
@@ -198,7 +192,6 @@ namespace Shedule_04.ModalsForm
                     MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка222.");
                 }
             }
-            
             #endregion
         }
 
@@ -228,9 +221,7 @@ namespace Shedule_04.ModalsForm
                 string idLecturer = reader3[0].ToString();
                 reader3.Close();
 
-
                 // --------------------ПРОВЕРКИ------------------------------
-
 
                 // Проверка на дубль занятия для группы в одно и то же время
                 string checkTask = @"SELECT id_shTime
@@ -321,12 +312,9 @@ namespace Shedule_04.ModalsForm
                     }
                 }
 
-
                 // Если все ок, то разрешаем добавить
                 if (idTask == null && idLect == null && idClass == null)
                 {
-
-
                     string addTime = @"Insert Into shedule_time (day, task_time, fk_subject, fk_classroom, fk_lecturer) VALUES
                                     ('" + combo_day.SelectedIndex + "', " +
                                     "'" + combo_time.SelectedItem + "', " +
@@ -347,7 +335,6 @@ namespace Shedule_04.ModalsForm
                     insert2.ExecuteNonQuery();
                 }
                 connect.Close();
-                //tableLoad();
                 tableLoad2();
             }
             catch (SqlException ex)
@@ -408,118 +395,8 @@ namespace Shedule_04.ModalsForm
             }
         }
 
-        private void tableLoad()
-        {
-
-            // Получаем все ИД квантов расписания
-            List<string> ids = new List<string>();
-            try
-            {
-                string gr = @"select id_group From groups where group_name = '" + group + "'";
-                SqlCommand table1 = new SqlCommand(gr, connect);
-                connect.Open();
-                SqlDataReader reader1 = table1.ExecuteReader();
-                reader1.Read();
-                string idGroup = reader1[0].ToString();
-                connect.Close();
-
-                string getIds = @"SELECT shed_time, id_group
-                                FROM shedule_table JOIN groups on fk_group = id_group
-                                WHERE year = '" + year + "' AND semester = '" + semester + "' AND id_group = '" + idGroup + "'";
-                SqlCommand table = new SqlCommand(getIds, connect);
-                connect.Open();
-                SqlDataReader reader = table.ExecuteReader();
-                while (reader.Read())
-                {
-                    ids.Add(reader[0].ToString());
-                }
-                connect.Close();
-
-            }
-            catch (SqlException ex)
-            {
-                connect.Close();
-                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
-            }
-
-            //Заполняем таблицу с расписанием
-            try
-            {
-                string[] queryIds = ids.ToArray();
-                string id = "(";
-
-                for (int j = 0; j < queryIds.Length; j++)
-                {
-                    if (j != queryIds.Length - 1)
-                    {
-                        id += "'" + ids[j] + "',";
-                    }
-                    else
-                    {
-                        id += "'" + ids[j] + "')";
-                    }
-                }
-                if (ids.Count != 0)
-                {
-                    string querieAll = @"select id_shTime, day, task_time, subject_name, surname, classroom_name 
-	                               from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
-	                               where id_shTime in " + id + " order by day, task_time ";
-
-                    SqlCommand table = new SqlCommand(querieAll, connect);
-
-                    connect.Open();
-
-                    SqlDataReader reader = table.ExecuteReader();
-
-                    int i = 0;
-                    dataGridView1.Rows.Clear();
-
-
-                    while (reader.Read())
-                    {
-
-                        dataGridView1.Rows.Add();
-                        dataGridView1[0, i].Value = reader[0]; //id_row
-
-                        // Сортировка дня недели и отображение
-                        int nameOfDay = Int32.Parse(reader[1].ToString());
-                        dataGridView1[1, i].Value = days[nameOfDay];
-
-                        dataGridView1[2, i].Value = reader[2];
-                        dataGridView1[3, i].Value = (reader[3] + ", " + reader[4] + ", " + reader[5]);
-                       // dataGridView1[4, i].Value = reader[4];
-                       // dataGridView1[5, i].Value = reader[5];
-                        i++;
-                    }
-                    reader.Close();
-                    connect.Close();
-
-                    int j = dataGridView1.Rows.Count - 1;
-                    while (j != 0)
-                    {
-                        if (j != 0 && dataGridView1[1, j].Value.ToString() == dataGridView1[1, j - 1].Value.ToString())
-                        {
-                            dataGridView1[1, j].Value = "";
-                        }
-                        j--;
-                    }
-                }
-                else
-                {
-                    dataGridView1.Rows.Clear();
-                }
-
-            }
-            catch (SqlException ex)
-            {
-                connect.Close();
-                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
-            }
-        }
-
         private void reloadLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //tableLoad();
             tableLoad2();
         }
 
@@ -542,7 +419,6 @@ namespace Shedule_04.ModalsForm
                         SqlDataReader reader2 = table.ExecuteReader();
                         reader2.Close();
                         connect.Close();
-                        //tableLoad();
                         tableLoad2();
                     }
                     catch (SqlException ex)
@@ -557,7 +433,6 @@ namespace Shedule_04.ModalsForm
         private void printLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Excel.Application excelapp = new Excel.Application();
-           // Object missing = Type.Missing;
             Excel.Workbook workbook = excelapp.Workbooks.Add(Type.Missing);
 
             excelapp.Columns[1].ColumnWidth = 13;
@@ -584,8 +459,6 @@ namespace Shedule_04.ModalsForm
                 excelapp.Cells[i + 2, 3] = dataGridView1[3, i].Value;
             }
             excelapp.Visible = true;
-            
         }
     }
-
 }

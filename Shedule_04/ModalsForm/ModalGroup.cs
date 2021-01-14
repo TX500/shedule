@@ -108,7 +108,6 @@ namespace Shedule_04.ModalsForm
 
             if (isNewItem == true && textBoxName.Text != "" && comboBox1.SelectedItem != null && comboBox2.SelectedItem != null)
             {
-
                 try
                 {
                     string getIdFaculty = @"SELECT id_faculty FROM faculty WHERE faculty_name = '" + comboBox2.SelectedItem.ToString() + "';";

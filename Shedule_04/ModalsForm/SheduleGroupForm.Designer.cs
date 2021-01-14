@@ -42,16 +42,16 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panelUp = new System.Windows.Forms.Panel();
-            this.printLink = new System.Windows.Forms.LinkLabel();
-            this.deleteLink = new System.Windows.Forms.LinkLabel();
-            this.reloadLink = new System.Windows.Forms.LinkLabel();
-            this.nameForm = new System.Windows.Forms.Label();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panelUp = new System.Windows.Forms.Panel();
+            this.printLink = new System.Windows.Forms.LinkLabel();
+            this.deleteLink = new System.Windows.Forms.LinkLabel();
+            this.reloadLink = new System.Windows.Forms.LinkLabel();
+            this.nameForm = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelUp.SuspendLayout();
@@ -208,72 +208,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(593, 501);
             this.dataGridView1.TabIndex = 1;
             // 
-            // panelUp
-            // 
-            this.panelUp.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panelUp.Controls.Add(this.printLink);
-            this.panelUp.Controls.Add(this.deleteLink);
-            this.panelUp.Controls.Add(this.reloadLink);
-            this.panelUp.Controls.Add(this.nameForm);
-            this.panelUp.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUp.Location = new System.Drawing.Point(0, 0);
-            this.panelUp.Name = "panelUp";
-            this.panelUp.Size = new System.Drawing.Size(593, 45);
-            this.panelUp.TabIndex = 2;
-            // 
-            // printLink
-            // 
-            this.printLink.AutoSize = true;
-            this.printLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.printLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.printLink.Location = new System.Drawing.Point(483, 17);
-            this.printLink.Name = "printLink";
-            this.printLink.Size = new System.Drawing.Size(61, 16);
-            this.printLink.TabIndex = 4;
-            this.printLink.TabStop = true;
-            this.printLink.Text = "В Excele";
-            this.printLink.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.printLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.printLink_LinkClicked);
-            // 
-            // deleteLink
-            // 
-            this.deleteLink.AutoSize = true;
-            this.deleteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.deleteLink.Location = new System.Drawing.Point(388, 16);
-            this.deleteLink.Name = "deleteLink";
-            this.deleteLink.Size = new System.Drawing.Size(63, 16);
-            this.deleteLink.TabIndex = 3;
-            this.deleteLink.TabStop = true;
-            this.deleteLink.Text = "Удалить";
-            this.deleteLink.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.deleteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.deleteLink_LinkClicked);
-            // 
-            // reloadLink
-            // 
-            this.reloadLink.AutoSize = true;
-            this.reloadLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.reloadLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.reloadLink.Location = new System.Drawing.Point(310, 16);
-            this.reloadLink.Name = "reloadLink";
-            this.reloadLink.Size = new System.Drawing.Size(72, 16);
-            this.reloadLink.TabIndex = 2;
-            this.reloadLink.TabStop = true;
-            this.reloadLink.Text = "Обновить";
-            this.reloadLink.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.reloadLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.reloadLink_LinkClicked);
-            // 
-            // nameForm
-            // 
-            this.nameForm.AutoSize = true;
-            this.nameForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameForm.Location = new System.Drawing.Point(13, 13);
-            this.nameForm.Name = "nameForm";
-            this.nameForm.Size = new System.Drawing.Size(108, 20);
-            this.nameForm.TabIndex = 0;
-            this.nameForm.Text = "Расписание";
-            this.nameForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // Column2
             // 
             this.Column2.Frozen = true;
@@ -318,6 +252,72 @@
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             this.Column7.Visible = false;
+            // 
+            // panelUp
+            // 
+            this.panelUp.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelUp.Controls.Add(this.printLink);
+            this.panelUp.Controls.Add(this.deleteLink);
+            this.panelUp.Controls.Add(this.reloadLink);
+            this.panelUp.Controls.Add(this.nameForm);
+            this.panelUp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelUp.Location = new System.Drawing.Point(0, 0);
+            this.panelUp.Name = "panelUp";
+            this.panelUp.Size = new System.Drawing.Size(593, 45);
+            this.panelUp.TabIndex = 2;
+            // 
+            // printLink
+            // 
+            this.printLink.AutoSize = true;
+            this.printLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.printLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.printLink.Location = new System.Drawing.Point(483, 17);
+            this.printLink.Name = "printLink";
+            this.printLink.Size = new System.Drawing.Size(53, 16);
+            this.printLink.TabIndex = 4;
+            this.printLink.TabStop = true;
+            this.printLink.Text = "В Excel";
+            this.printLink.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.printLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.printLink_LinkClicked);
+            // 
+            // deleteLink
+            // 
+            this.deleteLink.AutoSize = true;
+            this.deleteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deleteLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.deleteLink.Location = new System.Drawing.Point(388, 16);
+            this.deleteLink.Name = "deleteLink";
+            this.deleteLink.Size = new System.Drawing.Size(63, 16);
+            this.deleteLink.TabIndex = 3;
+            this.deleteLink.TabStop = true;
+            this.deleteLink.Text = "Удалить";
+            this.deleteLink.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.deleteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.deleteLink_LinkClicked);
+            // 
+            // reloadLink
+            // 
+            this.reloadLink.AutoSize = true;
+            this.reloadLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.reloadLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.reloadLink.Location = new System.Drawing.Point(310, 16);
+            this.reloadLink.Name = "reloadLink";
+            this.reloadLink.Size = new System.Drawing.Size(72, 16);
+            this.reloadLink.TabIndex = 2;
+            this.reloadLink.TabStop = true;
+            this.reloadLink.Text = "Обновить";
+            this.reloadLink.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.reloadLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.reloadLink_LinkClicked);
+            // 
+            // nameForm
+            // 
+            this.nameForm.AutoSize = true;
+            this.nameForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nameForm.Location = new System.Drawing.Point(13, 13);
+            this.nameForm.Name = "nameForm";
+            this.nameForm.Size = new System.Drawing.Size(108, 20);
+            this.nameForm.TabIndex = 0;
+            this.nameForm.Text = "Расписание";
+            this.nameForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SheduleGroupForm
             // 

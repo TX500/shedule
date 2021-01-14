@@ -158,9 +158,5 @@ namespace Shedule_04.ModalsForm
                 }
             }
         }
-
-
-
-
     }
 }
