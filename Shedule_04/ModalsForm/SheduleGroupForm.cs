@@ -557,7 +557,7 @@ namespace Shedule_04.ModalsForm
         private void printLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Excel.Application excelapp = new Excel.Application();
-            Object missing = Type.Missing;
+           // Object missing = Type.Missing;
             Excel.Workbook workbook = excelapp.Workbooks.Add(Type.Missing);
 
             excelapp.Columns[1].ColumnWidth = 13;

@@ -17,30 +17,38 @@ namespace Shedule_04
 
         private void tableLoad()
         {
-            string querieAll = @"SELECT * FROM lecturer;";
-
-            SqlCommand table = new SqlCommand(querieAll, connect);
-
-            connect.Open();
-
-            SqlDataReader reader = table.ExecuteReader();
-
-            int i = 0;
-            int N = 1;
-            dataGridView1.Rows.Clear();
-
-            while (reader.Read())
+            try
             {
-                dataGridView1.Rows.Add();
-                dataGridView1[0, i].Value = reader[0];            // id_row
-                dataGridView1[1, i].Value = N;                    // №
-                string nameLecturer = reader[1].ToString() + " " + reader[2].ToString() + " " + reader[3].ToString();
-                dataGridView1[2, i].Value = nameLecturer;
-                i++;
-                N++;
+                string querieAll = @"SELECT * FROM lecturer;";
+
+                SqlCommand table = new SqlCommand(querieAll, connect);
+
+                connect.Open();
+
+                SqlDataReader reader = table.ExecuteReader();
+
+                int i = 0;
+                int N = 1;
+                dataGridView1.Rows.Clear();
+
+                while (reader.Read())
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1[0, i].Value = reader[0];            // id_row
+                    dataGridView1[1, i].Value = N;                    // №
+                    string nameLecturer = reader[1].ToString() + " " + reader[2].ToString() + " " + reader[3].ToString();
+                    dataGridView1[2, i].Value = nameLecturer;
+                    i++;
+                    N++;
+                }
+                reader.Close();
+                connect.Close();
             }
-            reader.Close();
-            connect.Close();
+            catch (SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+            }
         }
 
         private void addLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -61,32 +69,40 @@ namespace Shedule_04
             int row = dataGridView1.SelectedRows[0].Index;
             ids = dataGridView1[0, row].Value.ToString();
 
-            string querieMassDelete = @"DELETE FROM lecturer WHERE id_lecturer = " + ids +";";
-
-            if (MessageBox.Show("Вы действительно хотите выбранные записи? Данная операция необратима.", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            try
             {
-                try
-                {
-                    SqlCommand table = new SqlCommand(querieMassDelete, connect);
+                string querieMassDelete = @"DELETE FROM lecturer WHERE id_lecturer = " + ids + ";";
 
-                    connect.Open();
-                    SqlDataReader reader = table.ExecuteReader();
-                    reader.Close();
-                    connect.Close();
-                    tableLoad();
-                }
-                catch (SqlException ex)
+                if (MessageBox.Show("Вы действительно хотите удалить выбранные записи? Данная операция необратима.", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    connect.Close();
-                    if (ex.Number == 547) // Каскадное удаление
+                    try
                     {
-                        MessageBox.Show("Удаление невозможно. Некоторые записи используются в других документах");
+                        SqlCommand table = new SqlCommand(querieMassDelete, connect);
+
+                        connect.Open();
+                        SqlDataReader reader = table.ExecuteReader();
+                        reader.Close();
+                        connect.Close();
+                        tableLoad();
                     }
-                    else
+                    catch (SqlException ex)
                     {
-                        MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                        connect.Close();
+                        if (ex.Number == 547) // Каскадное удаление
+                        {
+                            MessageBox.Show("Удаление невозможно. Некоторые записи используются в других документах");
+                        }
+                        else
+                        {
+                            MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
         }
 

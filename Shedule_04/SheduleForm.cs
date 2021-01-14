@@ -12,6 +12,7 @@ namespace Shedule_04
         private string group;
         private string semester;
         private string year;
+
         public SheduleForm()
         {
             InitializeComponent();
@@ -27,32 +28,40 @@ namespace Shedule_04
 
         private void tableLoad()
         {
-            string querieAll = @"SELECT g.group_name, sh.semester, sh.year
-                              FROM shedule_table sh join  groups g on sh.fk_group=g.id_group
-                              group by g.group_name, sh.semester, sh.year;";
-
-            SqlCommand table = new SqlCommand(querieAll, connect);
-
-            connect.Open();
-
-            SqlDataReader reader = table.ExecuteReader();
-
-            int i = 0;
-            int N = 1;
-            dataGridView1.Rows.Clear();
-
-            while (reader.Read())
+            try
             {
-                dataGridView1.Rows.Add();
-                dataGridView1[0, i].Value = N;
-                dataGridView1[1, i].Value = reader[0];    //group        
-                dataGridView1[2, i].Value = reader[1];    // semester
-                dataGridView1[3, i].Value = reader[2];    // year
-                i++;
-                N++;
+                string querieAll = @"SELECT g.group_name, sh.semester, sh.year
+                                   FROM shedule_table sh join  groups g on sh.fk_group=g.id_group
+                                   group by g.group_name, sh.semester, sh.year;";
+
+                SqlCommand table = new SqlCommand(querieAll, connect);
+
+                connect.Open();
+
+                SqlDataReader reader = table.ExecuteReader();
+
+                int i = 0;
+                int N = 1;
+                dataGridView1.Rows.Clear();
+
+                while (reader.Read())
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1[0, i].Value = N;
+                    dataGridView1[1, i].Value = reader[0];    //group        
+                    dataGridView1[2, i].Value = reader[1];    // semester
+                    dataGridView1[3, i].Value = reader[2];    // year
+                    i++;
+                    N++;
+                }
+                reader.Close();
+                connect.Close();
             }
-            reader.Close();
-            connect.Close();
+            catch (SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+            }
         }
 
         private void comboLoad()
@@ -86,26 +95,25 @@ namespace Shedule_04
         {
             int row = dataGridView1.CurrentRow.Index;
             shg.group = dataGridView1[1, row].Value.ToString();
-            
             shg.semester = dataGridView1[2, row].Value.ToString();
             shg.year = dataGridView1[3, row].Value.ToString();
 
-            string getIdGroup = @"Select id_group From groups Where group_name = '" + shg.group + "'";
-            SqlCommand tableIdGroup = new SqlCommand(getIdGroup, connect);
-            connect.Open();
-            SqlDataReader reader = tableIdGroup.ExecuteReader();
-            reader.Read();
-            string idGroup = reader[0].ToString();
-            shg.idGroup = idGroup;
-            reader.Close();
-
-            //string GetId = @"select id_shTable From shedule_table Where fk_group = '" + idGroup + "' " +
-            //    "AND semester = '" + shg.semester + "' AND year = '" + shg.year + "'  ";
-            //SqlCommand tableGetId = new SqlCommand(GetId, connect);
-            //SqlDataReader reader1 = tableGetId.ExecuteReader();
-            //reader1.Read();
-            //shg.idGroup = reader1[0].ToString();
-            //reader1.Close();
+            try
+            {
+                string getIdGroup = @"Select id_group From groups Where group_name = '" + shg.group + "'";
+                SqlCommand tableIdGroup = new SqlCommand(getIdGroup, connect);
+                connect.Open();
+                SqlDataReader reader = tableIdGroup.ExecuteReader();
+                reader.Read();
+                string idGroup = reader[0].ToString();
+                shg.idGroup = idGroup;
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+            }
             connect.Close();
             shg.FormClosed += new FormClosedEventHandler(SheduleGroupForm_FormClosed);
             shg.ShowDialog();
@@ -123,14 +131,22 @@ namespace Shedule_04
             semester = dataGridView1[2, row].Value.ToString();
             year = dataGridView1[3, row].Value.ToString();
 
-            string getIdGroup = @"Select id_group From groups Where group_name = '" + group + "'";
-            SqlCommand tableIdGroup = new SqlCommand(getIdGroup, connect);
-            connect.Open();
-            SqlDataReader reader = tableIdGroup.ExecuteReader();
-            reader.Read();
-            string idGroup = reader[0].ToString();
-            reader.Close();
-            connect.Close();
+            try
+            {
+                string getIdGroup = @"Select id_group From groups Where group_name = '" + group + "'";
+                SqlCommand tableIdGroup = new SqlCommand(getIdGroup, connect);
+                connect.Open();
+                SqlDataReader reader = tableIdGroup.ExecuteReader();
+                reader.Read();
+                string idGroup = reader[0].ToString();
+                reader.Close();
+                connect.Close();
+            }
+            catch (SqlException ex)
+            {
+                connect.Close();
+                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
+            }
 
             List<string> ids = new List<string>();
 
@@ -244,7 +260,6 @@ namespace Shedule_04
                     }
                     else
                     {
-                        //shg.idGroup = idGroup;
                         shg.FormClosed += new FormClosedEventHandler(SheduleGroupForm_FormClosed);
                         shg.ShowDialog();
                     }
@@ -308,7 +323,6 @@ namespace Shedule_04
                 connect.Close();
                 MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
-
         }
 
         private void btn_reset_Click(object sender, EventArgs e)
