@@ -46,20 +46,13 @@
             this.deleteLink = new System.Windows.Forms.LinkLabel();
             this.reloadLink = new System.Windows.Forms.LinkLabel();
             this.nameForm = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lab_year = new System.Windows.Forms.Label();
-            this.lab_sem = new System.Windows.Forms.Label();
-            this.lab_group = new System.Windows.Forms.Label();
-            this.lab_IdGroup = new System.Windows.Forms.Label();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelUp.SuspendLayout();
@@ -67,14 +60,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lab_year);
-            this.panel1.Controls.Add(this.lab_sem);
-            this.panel1.Controls.Add(this.lab_group);
-            this.panel1.Controls.Add(this.lab_IdGroup);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btn_add);
             this.panel1.Controls.Add(this.combo_classroom);
             this.panel1.Controls.Add(this.combo_lecturer);
@@ -214,7 +199,8 @@
             this.Column3,
             this.Column4,
             this.Column5,
-            this.Column6});
+            this.Column6,
+            this.Column7});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 45);
             this.dataGridView1.MultiSelect = false;
@@ -276,78 +262,6 @@
             this.nameForm.Text = "Расписание";
             this.nameForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 376);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "idGroup";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 401);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "group";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(30, 428);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "semester";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(29, 454);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(27, 13);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "year";
-            // 
-            // lab_year
-            // 
-            this.lab_year.AutoSize = true;
-            this.lab_year.Location = new System.Drawing.Point(111, 454);
-            this.lab_year.Name = "lab_year";
-            this.lab_year.Size = new System.Drawing.Size(31, 13);
-            this.lab_year.TabIndex = 25;
-            this.lab_year.Text = "none";
-            // 
-            // lab_sem
-            // 
-            this.lab_sem.AutoSize = true;
-            this.lab_sem.Location = new System.Drawing.Point(112, 428);
-            this.lab_sem.Name = "lab_sem";
-            this.lab_sem.Size = new System.Drawing.Size(31, 13);
-            this.lab_sem.TabIndex = 24;
-            this.lab_sem.Text = "none";
-            // 
-            // lab_group
-            // 
-            this.lab_group.AutoSize = true;
-            this.lab_group.Location = new System.Drawing.Point(112, 401);
-            this.lab_group.Name = "lab_group";
-            this.lab_group.Size = new System.Drawing.Size(31, 13);
-            this.lab_group.TabIndex = 23;
-            this.lab_group.Text = "none";
-            // 
-            // lab_IdGroup
-            // 
-            this.lab_IdGroup.AutoSize = true;
-            this.lab_IdGroup.Location = new System.Drawing.Point(112, 376);
-            this.lab_IdGroup.Name = "lab_IdGroup";
-            this.lab_IdGroup.Size = new System.Drawing.Size(31, 13);
-            this.lab_IdGroup.TabIndex = 22;
-            this.lab_IdGroup.Text = "none";
-            // 
             // Column2
             // 
             this.Column2.Frozen = true;
@@ -388,23 +302,32 @@
             // 
             // Column5
             // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column5.FillWeight = 25F;
             this.Column5.HeaderText = "Преподаватель";
             this.Column5.MinimumWidth = 70;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column5.Width = 110;
             // 
             // Column6
             // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column6.FillWeight = 15F;
             this.Column6.HeaderText = "Аудитория";
             this.Column6.MinimumWidth = 30;
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column6.Width = 66;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "day";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
             // 
             // SheduleGroupForm
             // 
@@ -446,19 +369,12 @@
         private System.Windows.Forms.LinkLabel deleteLink;
         private System.Windows.Forms.LinkLabel reloadLink;
         private System.Windows.Forms.Label nameForm;
-        private System.Windows.Forms.Label lab_year;
-        private System.Windows.Forms.Label lab_sem;
-        private System.Windows.Forms.Label lab_group;
-        private System.Windows.Forms.Label lab_IdGroup;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }
