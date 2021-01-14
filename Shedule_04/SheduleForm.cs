@@ -248,6 +248,7 @@ namespace Shedule_04
                         shg.FormClosed += new FormClosedEventHandler(SheduleGroupForm_FormClosed);
                         shg.ShowDialog();
                     }
+                    connect.Close();
                 }
                 catch (SqlException ex)
                 {

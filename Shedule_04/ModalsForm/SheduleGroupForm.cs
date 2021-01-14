@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+
 
 namespace Shedule_04.ModalsForm
 {
@@ -57,6 +59,7 @@ namespace Shedule_04.ModalsForm
             {
                 dataGridView1.Rows.Add();
             }
+            dataGridView1.Columns[3].HeaderText = group;
 
             // add faculty, group, days, times
             dataGridView1[3, 0].Value = "" + semester + " семестр " + year + " года \n" +
@@ -99,6 +102,7 @@ namespace Shedule_04.ModalsForm
                 }
             }
             #endregion
+
             #region ADD Items
             // Получаем все ИД квантов расписания
             List<string> ids = new List<string>();
@@ -132,65 +136,69 @@ namespace Shedule_04.ModalsForm
             }
 
             //Заполняем таблицу с расписанием
-            try
+            if(ids.Count != 0)
             {
-                string[] queryIds = ids.ToArray();
-                string id = "(";
-
-                for (int j = 0; j < queryIds.Length; j++)
+                try
                 {
-                    if (j != queryIds.Length - 1)
+                    string[] queryIds = ids.ToArray();
+                    string id = "(";
+
+                    for (int j = 0; j < queryIds.Length; j++)
                     {
-                        id += "'" + ids[j] + "',";
+                        if (j != queryIds.Length - 1)
+                        {
+                            id += "'" + ids[j] + "',";
+                        }
+                        else
+                        {
+                            id += "'" + ids[j] + "')";
+                        }
                     }
-                    else
-                    {
-                        id += "'" + ids[j] + "')";
-                    }
-                }
 
 
-                string querieAll = @"select id_shTime, day, task_time, subject_name, surname, classroom_name 
+                    string querieAll = @"select id_shTime, day, task_time, subject_name, surname, classroom_name 
 	                               from shedule_time JOIN subject on fk_subject = id_subject JOIN classroom on fk_classroom = id_classroom JOIN lecturer on fk_lecturer = id_lecturer
 	                               where id_shTime in " + id + " order by day, task_time ";
 
-                SqlCommand table = new SqlCommand(querieAll, connect);
+                    SqlCommand table = new SqlCommand(querieAll, connect);
 
-                connect.Open();
+                    connect.Open();
 
-                SqlDataReader reader = table.ExecuteReader();
+                    SqlDataReader reader = table.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    // Find row
-
-                    for (int jj = 1; jj < 43; jj += 6)
+                    while (reader.Read())
                     {
-                        if (reader[1].ToString() == dataGridView1[6, jj].Value.ToString())
-                        {
-                            for (int kk = jj; kk < (jj += 6); kk++)
-                            {
+                        // Find row
 
-                                if (reader[2].ToString() == dataGridView1[2, kk].Value.ToString())
+                        for (int jj = 1; jj < 43; jj += 6)
+                        {
+                            if (reader[1].ToString() == dataGridView1[6, jj].Value.ToString())
+                            {
+                                for (int kk = jj; kk < (jj += 6); kk++)
                                 {
-                                    dataGridView1[0, kk].Value = reader[0];
-                                    dataGridView1[3, kk].Value = reader[3];
-                                    dataGridView1[4, kk].Value = reader[4];
-                                    dataGridView1[5, kk].Value = reader[5];
-                                    break;
+
+                                    if (reader[2].ToString() == dataGridView1[2, kk].Value.ToString())
+                                    {
+                                        dataGridView1[0, kk].Value = reader[0];
+                                        dataGridView1[3, kk].Value = reader[3];
+                                        dataGridView1[4, kk].Value = reader[4];
+                                        dataGridView1[5, kk].Value = reader[5];
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
+                    reader.Close();
+                    connect.Close();
                 }
-                reader.Close();
-                connect.Close();
+                catch (SqlException ex)
+                {
+                    connect.Close();
+                    MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка222.");
+                }
             }
-            catch (SqlException ex)
-            {
-                connect.Close();
-                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
-            }
+            
             #endregion
         }
 
@@ -544,6 +552,26 @@ namespace Shedule_04.ModalsForm
                     }
                 }
             }
+        }
+
+        private void printLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Excel.Application excelapp = new Excel.Application();
+            Excel.Workbook workbook = excelapp.Workbooks.Add(Type.Missing);
+
+            excelapp.Columns[2].ColumnWidth = 30;
+            for (int i = 1; i < dataGridView1.Rows.Count; i++)
+            {
+                excelapp.Cells[i + 2, 1] = i;
+                excelapp.Cells[i + 2, 2] = dataGridView1[1, i - 1].Value;
+                excelapp.Cells[i + 2, 3] = dataGridView1[2, i - 1].Value;
+                excelapp.Cells[i + 2, 4] = dataGridView1[3, i - 1].Value;
+                //excelapp.Cells[i + 2, 5] = dataGridView1[4, i - 1].Value;
+                //excelapp.Cells[i + 2, 6] = dataGridView1[5, i - 1].Value;
+                //excelapp.Cells[i + 2, 7] = dataGridView1[6, i - 1].Value;
+                //excelapp.Cells[i + 2, 8] = dataGridView1[7, i - 1].Value;
+            }
+            excelapp.Visible = true;
         }
     }
 
