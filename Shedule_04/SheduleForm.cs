@@ -130,7 +130,7 @@ namespace Shedule_04
             group = dataGridView1[1, row].Value.ToString();
             semester = dataGridView1[2, row].Value.ToString();
             year = dataGridView1[3, row].Value.ToString();
-
+            List<string> ids = new List<string>();
             try
             {
                 string getIdGroup = @"Select id_group From groups Where group_name = '" + group + "'";
@@ -141,18 +141,8 @@ namespace Shedule_04
                 string idGroup = reader[0].ToString();
                 reader.Close();
                 connect.Close();
-            }
-            catch (SqlException ex)
-            {
-                connect.Close();
-                MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
-            }
 
-            List<string> ids = new List<string>();
-
-            // Получаем все ИД для удаления
-            try
-            {
+                // Получаем все ИД для удаления
                 string getIds = @"SELECT id_shTime, shed_time, id_group
                                 FROM shedule_time JOIN shedule_table on shed_time = id_shTime Join groups on fk_group = id_group
                                 WHERE year = '" + year + "' AND semester = '" + semester + "' AND id_group = '" + idGroup + "'";
@@ -165,13 +155,13 @@ namespace Shedule_04
                 }
                 reader2.Close();
                 connect.Close();
-
             }
             catch (SqlException ex)
             {
                 connect.Close();
                 MessageBox.Show(ex.Number.ToString(), "Неизвестная ошибка.");
             }
+            
             string[] queryIds = ids.ToArray();
             string id = "(";
 
